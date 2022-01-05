@@ -75,3 +75,23 @@ header > div > h2{
   align-items: center;
   justify-content: center;
 }
+
+
+.retail-box-container{
+  background-color: gray;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 0;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  padding: 0px;
+}
+
+.retail-box{
+  background-color: white;
+  margin: 1em;
+  height: 50px;
+  display: flex;
+  align-items: end;
+}
