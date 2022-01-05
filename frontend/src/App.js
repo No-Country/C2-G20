@@ -16,7 +16,6 @@ function App() {
       <section className="section-retail">
         <Retail />
       </section>
-      <Retail />
     </div>
   );
 }
