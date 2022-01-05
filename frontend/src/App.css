@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+
+header{
+  padding: .5em .5em;
+  background-color: #017ADB;
+  height:"96px";
+}
+
+header > div{
+  min-width: 320px;
+  margin: .5em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+header > div > h2{
+  margin: 0;
+}
+
+.header_container-top{
+}
+.icon-header{
+  font-size: 30px;
+}
+
+.input-search{
+  width: 85%;
+  padding: .5em;
+  border: none;
+}
+
