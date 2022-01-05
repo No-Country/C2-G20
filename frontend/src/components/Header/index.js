@@ -5,7 +5,7 @@ export default function Header() {
     <header>
       <div className="header_container-top">
         <Icon icon="bx:bx-menu-alt-left" className="icon-header icon-menu" />
-        <h2>Grupo20</h2>
+        <h2>G20</h2>
         <Icon
           className="icon-header icon-user"
           icon="ant-design:user-outlined"

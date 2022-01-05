@@ -42,10 +42,10 @@ header{
   padding: .5em .5em;
   background-color: #017ADB;
   height:"96px";
+  max-width: 1fr;
 }
 
 header > div{
-  min-width: 320px;
   margin: .5em 0;
   display: flex;
   align-items: center;
