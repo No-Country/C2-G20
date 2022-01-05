@@ -1,15 +1,19 @@
-import logo from "./logo.svg"
-import "./App.css"
-import Header from "./components/Header"
-import Retail from "./components/Retail"
-import Footer from "./components/Footer"
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./components/Header";
+import Retail from "./components/Retail";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <section className="section-retail">
+        <Retail />
+      </section>
+      <Retail />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
