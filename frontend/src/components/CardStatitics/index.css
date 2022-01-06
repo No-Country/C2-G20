@@ -1,0 +1,16 @@
+.card-statitics{
+  border-radius: 11px;
+  font-size: 14px;
+  box-shadow: 0 0 12px -2px ;
+  width:276px;
+  height:190px;
+}
+
+.card-statitics > h2{
+  margin: 0;
+}
+
+.card-statitics > img {
+  max-width: 100%;
+  height: 60%;
+}
