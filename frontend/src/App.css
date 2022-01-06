@@ -37,33 +37,33 @@
   }
 }
 
-
-header{
-  padding: .5em .5em;
-  background-color: #017ADB;
-  height:"96px";
+header {
+  padding: 0.5em 0.5em;
+  background-color: #017adb;
+  height: "96px";
+  max-width: 1fr;
 }
 
-header > div{
-  min-width: 320px;
-  margin: .5em 0;
+header > div {
+  margin: 0.5em 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
 }
-header > div > h2{
+header > div > h2 {
   margin: 0;
 }
 
-.header_container-top{
+.header_container-top {
 }
-.icon-header{
+.icon-header {
   font-size: 30px;
 }
 
-.input-search{
+.input-search {
   width: 85%;
-  padding: .5em;
+  padding: 0.5em;
   border: none;
 }
+

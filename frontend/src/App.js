@@ -1,6 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/Header";
+
+import logo from "./logo.svg";
+import "./App.css";
 import Retail from "./components/Retail";
 import Footer from "./components/Footer";
 
