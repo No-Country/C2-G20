@@ -1,23 +1,23 @@
-<<<<<<< HEAD
 import "./App.css"
 import Header from "./components/Header"
-=======
-import logo from "./logo.svg";
-import "./App.css";
-import Header from "./components/Header";
-import Retail from "./components/Retail";
-import Footer from "./components/Footer";
->>>>>>> f1381db51d6f50ae9e64809af72b50762bcec269
+import "./App.css"
+import Footer from "./components/Footer"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
+import Dashboard from "./pages/Dashboard"
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <section className="section-retail">
-        <Retail />
-      </section>
-    </div>
-  );
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,7 @@
+.header-dashboard{
+  display: flex;
+  flex-direction: column;
+  background-color: #017ADB;
+  width: 30px;
+  height: 100vh;
+}

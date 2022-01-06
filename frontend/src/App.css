@@ -38,21 +38,21 @@
 }
 
 
-header{
+.App > header{
   padding: .5em .5em;
   background-color: #017ADB;
   height:"96px";
   max-width: 1fr;
 }
 
-header > div{
+.App > header > div{
   margin: .5em 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
 }
-header > div > h2{
+.App > header > div > h2{
   margin: 0;
 }
 
