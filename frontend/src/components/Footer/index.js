@@ -23,7 +23,7 @@ function Details ({detail, links}) {
 
 export default function Footer () {
   return (
-    <div id="footer">
+    <footer>
       <div className="contactos">
         <p>Contáctenos</p>
         <a href="https://twitter.com" target="_blank" rel="noreferrer noopener"><Icon icon="simple-icons:twitter" color="white" width="20" height="20"/></a>
@@ -50,6 +50,6 @@ export default function Footer () {
         <p>Grupo20 Mx y Centroamérica</p>
         <p className="footer-bold">©2022 | Todos los derechos reservados</p>
       </div>
-    </div>
+    </footer>
   )
 }
