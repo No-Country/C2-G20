@@ -1,3 +1,5 @@
+import React from "react";
+
 const Accordion = ({ title, children }) => {
   const [isOpen, setOpen] = React.useState(false);
   return (
@@ -14,7 +16,6 @@ const Accordion = ({ title, children }) => {
     </div>
   );
 };
-
 
 // Taking some water
 export default Accordion;

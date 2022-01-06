@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-
+import Accordion from "./Accordion";
 export default function Footer() {
   return (
     <footer className="footer-container">
@@ -10,17 +10,23 @@ export default function Footer() {
         <Icon icon="akar-icons:youtube-fill" className="iconf" />
       </div>
       <div className="footer-accordion">
-        <div className="footer-accordion-item">
-          <h4>g20.com</h4>
-        </div>
-        <div className="footer-accordion-item">
-          <h4>Servicio a Domicilio</h4>
-        </div>
-        <div className="footer-accordion-item">
-          <h4>Ayuda</h4>
-        </div>
-        <div className="footer-accordion-item">
-          <h4>Info Corporativa</h4>
+        <div className="wrapper">
+            <Accordion title="G20.com">
+                <p>Quienes Somos</p>
+                <p>Aviso de Privacidad</p>
+            </Accordion>
+            <Accordion title="Servicio a Domicilio">
+                <p>Quienes Somos</p>
+                <p>Aviso de Privacidad</p>
+            </Accordion>
+            <Accordion title="Ayuda">
+                <p>Quienes Somos</p>
+                <p>Aviso de Privacidad</p>
+            </Accordion>
+            <Accordion title="Info Corporativa">
+                <p>Quienes Somos</p>
+                <p>Aviso de Privacidad</p>
+            </Accordion>
         </div>
       </div>
       <div className="footer-copyright">
