@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Header />
       <section className="section-retail">
+        <Retail />
       </section>
     </div>
   );
