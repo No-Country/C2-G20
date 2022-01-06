@@ -105,3 +105,33 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.footer-container{
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  height: "96px";
+}
+
+.footer-header{
+  color: white;
+  background-color: #017ADB;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  height: "96px";
+  padding-left: 3em;
+  padding-right: 0.3em;
+}
+
+
+.footer-header > h3{
+  font-weight: 400;
+  margin-right: 1em;
+}
+
+.iconf {
+  margin-right: 1em;
+}

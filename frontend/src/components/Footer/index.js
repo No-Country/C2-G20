@@ -5,9 +5,9 @@ export default function Footer() {
     <footer className="footer-container">
       <div className="footer-header">
         <h3>Contáctanos</h3>
-        <Icon icon="bx:bx-menu-alt-left" />
-        <Icon icon="bx:bx-menu-alt-left" />
-        <Icon icon="bx:bx-menu-alt-left" />
+        <Icon icon="akar-icons:twitter-fill" className="iconf" />
+        <Icon icon="akar-icons:facebook-fill" className="iconf" />
+        <Icon icon="akar-icons:youtube-fill" className="iconf" />
       </div>
       <div className="footer-accordion">
         <div className="footer-accordion-item">
