@@ -1,3 +1,4 @@
+
 import "./App.css"
 import Header from "./components/Header"
 import "./App.css"
@@ -15,6 +16,7 @@ import HeaderDashboard from "./components/HeaderDashboard"
 function App() {
   const { pathname } = useLocation()
   return (
+
     <div className="App">
       {!pathname.includes("/Dashboard") ? <Header /> : <HeaderDashboard />}
       <Routes>
@@ -25,4 +27,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
