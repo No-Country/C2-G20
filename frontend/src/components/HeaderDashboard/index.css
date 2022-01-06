@@ -1,7 +1,17 @@
 .header-dashboard{
-  display: flex;
-  flex-direction: column;
   background-color: #017ADB;
   width: 30px;
   height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.nav-dashboard{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vmin;  
 }
