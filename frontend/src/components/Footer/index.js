@@ -20,10 +20,8 @@ function Details ({detail, open, setOpen, children}) {
 
 export default function Footer () {
   const [open, setOpen] = useState(null)
-  const toogle = (isOpen) => {
-    if (open === isOpen) setOpen(null)
-    else setOpen(isOpen)
-  }
+  const toogle = (isOpen) => (open === isOpen) ? setOpen(null) : setOpen(isOpen)
+
   return (
     <footer>
       <div className="contactos">
