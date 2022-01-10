@@ -1,3 +1,4 @@
+const excelJS = require("exceljs");
 const Projects = require("../models/Projects");
 const Tasks = require("../models/Tasks");
 
@@ -145,4 +146,34 @@ exports.deleteProject = async (req, res, next) => {
     return next();
   }
   res.status(200).send("Project Deleted Sucessfully");
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////
+// Exports Excel
+exports.downloadExcel = async (req, res) => {
+  const userId = res.locals.user.id;
+  const projects = await Projects.findAll({ where: { userId } });
+
+  const workbook = new excelJS.Workbook();
+  const worksheet = workbook.addWorksheet("Projects");
+
+  worksheet.columns = [
+    { header: "Name", key: "name", width: 10 },
+    { header: "Url", key: "tasks", width: 10 },
+    { header: "Status", key: "status", width: 10 },
+  ];
+
+  projects.forEach((project) => {
+    worksheet.addRow({
+      name: project.name,
+      url: project.url,
+    });
+  });
+
+  res.setHeader(
+    "Content-Type",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  );
+  res.setHeader("Content-Disposition", "attachment; filename=Projects.xlsx");
+  await workbook.xlsx.write(res);
 };
