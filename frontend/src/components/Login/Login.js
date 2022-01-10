@@ -1,20 +1,38 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../Login/login.css";
 export const Login = () => {
-    return (
-        <>  
-        <div className="row">
-            <div className="col-md-7">
-            <h3 className="my-4">No Country</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus magni et quas autem dolores distinctio earum sit molestiae soluta, quod sapiente minus alias, aperiam excepturi eaque blanditiis beatae adipisci facere dolore voluptas. Nulla natus, repudiandae rem odit eum ea obcaecati nobis nam placeat molestias incidunt exercitationem nisi sapiente ex numquam?</p>
+  return (
+    <>
+      <div className="container bg-light">
+        <form>
+          <div className="box text-dark shadow-lg border my-4">
+            <h1 className="my-3">Inicia Sesión</h1>
+            <i class="fas fa-users fa-3x my-2 text-primary"></i>
+            <h5 className="mb-4 my-4">Bienvenido</h5>
+            <label className="form-label">Email<label className="text-danger">*</label></label>
+            <div className="mb-4 d-flex justify-content-center">
+              <input
+                type="email"
+                className="form-control w-75 inputColor"
+                placeholder="example@example.com"
+                required
+              />
             </div>
-            <div className="col-md-5">
-            <h3 className="my-4">LogIn</h3>
-
+            <label className="form-label">Contraseña<label className="text-danger">*</label></label>
+            <div className="mb-4 d-flex justify-content-center">
+              <input
+                type="password"
+                className="form-control w-75 inputColor"
+                placeholder="******"
+                required
+              />
             </div>
-
-        </div>
-
-        </>
-    )
-}
+        <button className="botonIngresar my-4">Ingresar <i class="fas fa-sign-in-alt"></i></button>
+        <p className="form-text"><i class="fas fa-shield-alt mx-2"></i>Datos seguros y protegidos</p>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
