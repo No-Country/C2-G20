@@ -18,9 +18,8 @@ function App() {
   return (
 
     <div className="App">
-      {!pathname.includes("/Dashboard") ? <Header /> : <HeaderDashboard />}
+      {!pathname.includes("/Dashboard") ? <Home /> : <HeaderDashboard /> }
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/Dashboard/Statitics" element={<DashboardStatitics />} />
       </Routes>
     </div>
