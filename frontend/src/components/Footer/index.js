@@ -3,7 +3,7 @@ import { useState } from "react"
 import './Footer.css'
 
 function Links ({link}) {
-  return <a href="/#"><p style={{padding: "10px 5%"}}>{link}</p></a>
+  return <a href="/#"><p className="detail-link">{link}</p></a>
 }
 
 function Details ({detail, open, setOpen, children}) {
@@ -20,7 +20,7 @@ function Details ({detail, open, setOpen, children}) {
 
 export default function Footer () {
   const [open, setOpen] = useState(null)
-  const toogle = (isOpen) => (open === isOpen) ? setOpen(null) : setOpen(isOpen)
+  const toogle = isOpen => open === isOpen ? setOpen(null) : setOpen(isOpen)
 
   return (
     <footer>
