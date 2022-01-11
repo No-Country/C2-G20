@@ -18,8 +18,15 @@
  
 }
 
+.icon-header:hover{
+  color: rgb(202, 202, 202);
+   
+ 
+}
+
 .icon-header{
   cursor: pointer;
+  color: white;
 }
 
 

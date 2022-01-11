@@ -12,15 +12,21 @@ import {
 import Home from "./pages/Home"
 import DashboardStatitics from "./pages/DashboardStatitics"
 import HeaderDashboard from "./components/HeaderDashboard"
+import { ControlPanel } from "./pages/PanelDeControl/ControlPanel"
+import { Configuracion } from "./pages/Configuracion/Configuracion"
+import { Cliente } from "./pages/Cliente/Cliente"
 
 function App() {
   const { pathname } = useLocation()
   return (
 
     <div className="App">
-      {!pathname.includes("/Dashboard") ? <Home /> : <HeaderDashboard /> }
+      {!pathname.includes("/Dashboard") && !pathname.includes("/dashboard") ? <Home /> : <HeaderDashboard /> }
       <Routes>
-        <Route path="/Dashboard/Statitics" element={<DashboardStatitics />} />
+        <Route path="/Dashboard" element={ <ControlPanel />} />
+        <Route path="/Dashboard/Statitics" element={ <DashboardStatitics />} />
+        <Route path="/Dashboard/Setting" element ={ <Configuracion />} />
+        <Route path="/Dashboard/Cliente" element={ <Cliente /> } />
       </Routes>
     </div>
   )
