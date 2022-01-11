@@ -7,6 +7,8 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const helpers = require("./helpers");
 const passport = require("./config/passport");
+const cors = require("cors");
+
 require("dotenv").config({ path: "vars.env" });
 
 // email handler
@@ -30,18 +32,12 @@ const app = express();
 // Load static files
 app.use(express.static("public"));
 
-//Enable Pug
-app.set("view engine", "pug");
 
 // enable body parser
 app.use(express.urlencoded({ extended: true }));
 
 // Add express-validator
 app.use(expressValidator());
-
-// Add view folder
-app.set("views", path.join(__dirname, "./views"));
-
 app.use(cookieParser());
 
 app.use(
