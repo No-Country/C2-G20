@@ -158,9 +158,9 @@ exports.downloadExcel = async (req, res) => {
   const worksheet = workbook.addWorksheet("Projects");
 
   worksheet.columns = [
-    { header: "Name", key: "name", width: 10 },
-    { header: "Url", key: "tasks", width: 10 },
-    { header: "Status", key: "status", width: 10 },
+    { header: "Name", key: "name", width: 15 },
+    { header: "Url", key: "tasks", width: 15 },
+    { header: "Status", key: "status", width: 15 },
   ];
 
   projects.forEach((project) => {
