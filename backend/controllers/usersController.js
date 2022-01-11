@@ -4,19 +4,13 @@ const sendEmail = require("../handlers/email");
 // form signup
 
 exports.formSignup = (req, res) => {
-  res.render("signUp", {
-    pageName: "Sign Up",
-  });
 };
 
 //form login
 
 exports.formLogin = (req, res) => {
   const { error } = res.locals.messages;
-  res.render("login", {
-    pageName: "Login",
-    error,
-  });
+
 };
 
 //Sign up

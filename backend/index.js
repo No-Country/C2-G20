@@ -19,8 +19,6 @@ require("./handlers/email");
 const db = require("./config/db");
 
 // Import model
-require("./models/Projects");
-require("./models/Tasks");
 require("./models/Users");
 
 db.sync()
