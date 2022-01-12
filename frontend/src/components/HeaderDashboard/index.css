@@ -1,6 +1,6 @@
 .header-dashboard{
   background-color: #017ADB;
-  width: 50px;
+  width: 40px;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   height: 95vmin;  
- 
+  
 }
 
 .icon-header:hover{
@@ -34,7 +34,7 @@
 
   .nav-dashboard{
     height: 170vmin;
-    
+  
   }
 
 }
