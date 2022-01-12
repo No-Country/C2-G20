@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Login/login.css";
+import Footer from "../Footer";
 export const Login = () => {
   return (
     <>
@@ -33,6 +34,7 @@ export const Login = () => {
           </div>
         </form>
       </div>
+
     </>
   );
 };
