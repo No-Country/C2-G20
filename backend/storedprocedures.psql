@@ -1,12 +1,10 @@
-CREATE OR REPLACE PROCEDURE updatecrypto (name varchar, currency varchar, price decimal, highday decimal, lowday decimal, changepct24h decimal, lastupdate varchar)
+CREATE OR REPLACE PROCEDURE updatecrypto (x r)
 LANGUAGE plpgsql
 AS $$
 BEGIN
     UPDATE
         cryptos
     SET
-        cryptos.name = name,
-        currency = currency,
         price = price,
         highday = highday,
         lowday = lowday,
