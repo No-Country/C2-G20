@@ -1,0 +1,29 @@
+{
+  "name": "rest-api-c1-g5",
+  "version": "1.0.0",
+  "description": "REST API para tener como base",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js"
+  },
+  "keywords": [
+    "REST",
+    "API",
+    "Backend",
+    "Node"
+  ],
+  "author": "Hector Sebastian Trejo Luna",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "pg": "^8.7.1",
+    "sequelize": "^6.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
