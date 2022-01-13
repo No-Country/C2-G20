@@ -3,7 +3,7 @@ const db = require("../config/db");
 
 const axios = require("axios");
 
-exports.getCrypto = async (res, next) => {
+exports.getCrypto = async (req, res, next) => {
   const cryptos = {
     BTC: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=btc&tsyms=usd",
     ETH: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=eth&tsyms=usd",
@@ -59,6 +59,7 @@ exports.getCrypto = async (res, next) => {
         },
       }
     );
+
     res.json({ message: "Crypto data updated successfully :b" });
   } catch (error) {
     console.log(error);

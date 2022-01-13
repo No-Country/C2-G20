@@ -1,0 +1,2 @@
+create or replace procedure updatecrypto( name varchar, currency varchar, price decimal, highday decimal, lowday decimal, changepct24h decimal, lastupdate varchar ) language plpgsql as $$ begin UPDATE cryptos SET name = name, currency = currency, price = price, highday = highday, lowday = lowday, changepct24h = changepct24h, lastupdate = lastupdate; commit; end; $$;
+
