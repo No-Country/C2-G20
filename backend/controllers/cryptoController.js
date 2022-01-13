@@ -16,9 +16,8 @@ exports.getCrypto = async (req, res, next) => {
 
   try {
     // call stored procedure
-    console.log("LLAMANDO A BTC" + btc.data.RAW.BTC.USD.TOSYMBOL);
     db.query(
-      "CALL getcrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
+      "CALL updatecrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
       {
         replacements: {
           name: btc.data.RAW.BTC.USD.FROMSYMBOL,
@@ -32,7 +31,7 @@ exports.getCrypto = async (req, res, next) => {
       }
     );
     db.query(
-      "CALL getcrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
+      "CALL updatecrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
       {
         replacements: {
           name: eth.data.RAW.ETH.USD.FROMSYMBOL,
@@ -46,7 +45,7 @@ exports.getCrypto = async (req, res, next) => {
       }
     );
     db.query(
-      "CALL getcrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
+      "CALL updatecrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
       {
         replacements: {
           name: doge.data.RAW.DOGE.USD.FROMSYMBOL,
