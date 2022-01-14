@@ -4,11 +4,13 @@ import CardStatitics from "../../components/CardStatitics"
 import ElipseStatitics from "../../components/ElipseStatitics"
 import imageStatiticsMonth from "../../images/estadisticas-mes.png"
 import imageStatiticsWeekly from "../../images/estadisticas-semana.png"
+import Dashboard from "../../components/Dashboard/Dashboard"
 
 export default function DashboardStatitics() {
   return (
     <section className="dashboard" style={{ "padding-left": "1em" }}>
       <CardStatitics title="ventas de último mes" image={imageStatiticsMonth} />
+      <Dashboard />
       <CardStatitics
         title="ventas de última semana"
         image={imageStatiticsWeekly}
