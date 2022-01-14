@@ -23,7 +23,7 @@ function App() {
   return (
 
     <div className="App">
-      {!pathname.includes("/Dashboard") && !pathname.includes("/dashboard") ? <Home /> : <HeaderDashboard /> }
+      {!pathname.includes("/Dashboard") && !pathname.includes("/dashboard") ? <Home /> : <NavBar /> }
       <Routes>
         <Route path="/Dashboard" element={ <ControlPanel />} />
         <Route path="/Dashboard/Statitics" element={ <DashboardStatitics />} />

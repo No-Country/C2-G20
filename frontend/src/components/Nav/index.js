@@ -34,7 +34,7 @@ export default function NavBar () {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to='/Dashboard' className="nav-link">
+          <Link to='/Dashboard' className="nav-link ">
             <Icon icon="fluent:home-16-filled" width="32" height="32"/>
             <span className="link-text">Dashboard</span>
           </Link>
