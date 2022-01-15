@@ -26,7 +26,10 @@ const Clients = db.define(
   {
     hooks: {
       beforeCreate: (client) => {
-        client.password = bcrypt.hashSync(client.password, 10);
+        client.password = bcrypt.hashSync(
+          client.password,
+          bcrypt.genSaltSync(10)
+        );
       },
     },
   }
