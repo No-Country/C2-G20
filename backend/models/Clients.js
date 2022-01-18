@@ -7,9 +7,8 @@ const Clients = db.define(
   "clients",
   {
     symbol_crypto: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING(10),
       primaryKey: true,
-      autoIncrement: true,
     },
     name: {
       type: Sequelize.STRING(70),
@@ -41,8 +40,5 @@ Clients.prototype.verifyPassword = function (password) {
 };
 
 Clients.hasOne(Cryptos, { foreignKey: "symbol_crypto" });
-
-
-
 
 module.exports = Clients;

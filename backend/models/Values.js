@@ -1,13 +1,14 @@
 const Sequelize = require("sequelize");
 const db = require("../config/db");
 
-const Cryptos = db.define("cryptos", {
+const Values = db.define("values", {
   symbol_crypto: {
-    type: Sequelize.STRING(10),
+    type: Sequelize.INTEGER,
     primaryKey: true,
+    autoIncrement: true,
   },
   name: {
     type: Sequelize.STRING(70),
   },
 });
-module.exports = Cryptos;
+module.exports = Values;
