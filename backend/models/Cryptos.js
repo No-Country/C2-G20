@@ -11,3 +11,5 @@ const Cryptos = db.define("cryptos", {
   },
 });
 module.exports = Cryptos;
+
+Cryptos.hasMany(Values, { foreignKey: "symbol_crypto" });
