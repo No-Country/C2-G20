@@ -1,4 +1,6 @@
 const Sequelize = require("sequelize");
+const Values = require("../models/Values");
+
 const db = require("../config/db");
 
 const Cryptos = db.define("cryptos", {
