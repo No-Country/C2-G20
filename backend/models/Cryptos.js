@@ -1,17 +1,19 @@
 const Sequelize = require("sequelize");
-const Values = require("../models/Values");
+const Clients = require("../models/Clients");
+const Crypto_Values = require("../models/Crypto_Values");
 
 const db = require("../config/db");
 
 const Cryptos = db.define("cryptos", {
   symbol_crypto: {
     type: Sequelize.STRING(10),
-    primaryKey: true,
   },
   name: {
     type: Sequelize.STRING(70),
   },
 });
-module.exports = Cryptos;
 
-Cryptos.hasMany(Values, { foreignKey: "symbol_crypto" });
+Cryptos.hasOne(Clients, { foreignKey: "symbol_crypto" }),
+Cryptos.hasMany(Crypto_Values, { foreignKey: "symbol_crypto" });
+
+module.exports = Cryptos;
