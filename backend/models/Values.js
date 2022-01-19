@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const Crypto_Values = require("./Crypto_Values");
 const db = require("../config/db");
 
 const Values = db.define("values", {

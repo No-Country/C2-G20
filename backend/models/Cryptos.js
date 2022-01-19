@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const Clients = require("../models/Clients");
 const Crypto_Values = require("../models/Crypto_Values");
+const Values = require("../models/Values");
 
 const db = require("../config/db");
 
