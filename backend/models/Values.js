@@ -17,7 +17,7 @@ const Values = db.define("values", {
   },
   change_rate: {
     type: Sequelize.INTEGER,
-  }
+  },
   mxn: {
     type: Sequelize.FLOAT(5, 5),
   },
