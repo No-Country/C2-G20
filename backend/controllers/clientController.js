@@ -17,7 +17,7 @@ exports.newClient = async (req, res, next) => {
 
 exports.showClients = async (req, res, next) => {
   try {
-    const clients = await Clients.find({});
+    const clients = await Clients.findAll({});
     res.json(clients);
   } catch (error) {
     console.log(error);

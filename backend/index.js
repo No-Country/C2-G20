@@ -2,6 +2,7 @@ const express = require("express");
 const routes = require("./routes");
 const session = require("express-session");
 const cors = require("cors");
+const auth = require("./middleware/auth");
 
 require("dotenv").config({ path: "variables.env" });
 const db = require("./config/db");
