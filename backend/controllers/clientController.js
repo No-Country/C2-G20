@@ -51,7 +51,7 @@ exports.authClient = async (req, res, next) => {
     } else {
       const token = jwt.sign(
         { email: client.email, id: client.symbol_crypto },
-        'G20-Crypto-Wallet',
+        "G20-Crypto-Wallet",
         {
           expiresIn: "1h",
         }
