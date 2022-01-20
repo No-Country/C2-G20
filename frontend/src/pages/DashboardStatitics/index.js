@@ -1,5 +1,4 @@
-// import "./index.css"
-
+import "./index.css"
 import CardStatitics from "../../components/CardStatitics"
 import ElipseStatitics from "../../components/ElipseStatitics"
 import imageStatiticsMonth from "../../images/estadisticas-mes.png"
@@ -7,7 +6,7 @@ import imageStatiticsWeekly from "../../images/estadisticas-semana.png"
 
 export default function DashboardStatitics() {
   return (
-    <section className="dashboard" style={{ "padding-left": "1em" }}>
+    <section className="dashboard-statitics">
       <CardStatitics title="ventas de último mes" image={imageStatiticsMonth} />
       <CardStatitics
         title="ventas de última semana"
