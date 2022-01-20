@@ -223,7 +223,6 @@ exports.getCryptoValueDay = async (req, res, next) => {
         `
       );
       return res.send(selectNew[0][0]);
-      // value[0] = divisasToday;
     }
   } catch (e) {
     console.log("el errooor", e.name);
