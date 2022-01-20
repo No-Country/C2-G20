@@ -2,7 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 // Reference to the User model
-const Users = require("../models/Users");
+const Clients = require("../models/Clients");
 
 // local strategy - Login with own credentials (username and password)
 
@@ -14,7 +14,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await Users.findOne({
+        const user = await Clients.findOne({
           where: { email, active: 1 },
         });
         if (!user.verifyPassword(password)) {
