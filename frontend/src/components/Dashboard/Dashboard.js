@@ -59,14 +59,16 @@ Chart.register(
   SubTitle
 );
 
+
+
 export default function Dashboard() {
   return (
-    <div className='chart-container'>
+    <div className='chart-container '>
       <BartChart data={dataBar}/>
       <LineChart data={dataLine} />
       <DoughnutChart data={dataDoughnut} />
       <PieChart data={dataPie} />
-      <PolarChart data={dataPolar} />
+      <PolarChart data={dataPolar} /> 
       <BartChart data={dataBar2}/>
     </div>
   );

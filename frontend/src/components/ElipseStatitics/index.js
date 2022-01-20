@@ -2,11 +2,12 @@ import "./index.css"
 
 export default function ElipseStatitics({ number, description }) {
   return (
-    <figure className="container-elipse w-75 container">
-      <div className="elipse">
-        <h2 clasName="number-elipse">{number}</h2>
+    <div className=" my-4">
+      <div className=" circulo">
+        <h2 clasName="texto">{number}</h2>
+      <strong className="texto">{description}</strong>
       </div>
-      <strong className="description-elipse">{description}</strong>
-    </figure>
+
+    </div>
   )
 }

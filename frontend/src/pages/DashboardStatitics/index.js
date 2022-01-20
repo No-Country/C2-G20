@@ -1,26 +1,33 @@
 // import "./index.css"
-
 import CardStatitics from "../../components/CardStatitics"
 import ElipseStatitics from "../../components/ElipseStatitics"
 import imageStatiticsMonth from "../../images/estadisticas-mes.png"
 import imageStatiticsWeekly from "../../images/estadisticas-semana.png"
 import Dashboard from "../../components/Dashboard/Dashboard"
+import BartChart from "../../components/Dashboard/BarChart"
+
+
 
 export default function DashboardStatitics() {
+
+
+
   return (
-    <section className="dashboard" style={{ "padding-left": "1em" }}>
-      <CardStatitics title="ventas de último mes" image={imageStatiticsMonth} />
+    <section className="dashboard border  shadow-lg my-4" style={{ "padding-left": "1em" }}>
+      <h4 className="lead display-6">BTC Ultimo mes</h4>
+      <hr className="text-primary mb-4"/>
       <Dashboard />
-      <CardStatitics
-        title="ventas de última semana"
-        image={imageStatiticsWeekly}
-      />
-      <div className="">
-        <ElipseStatitics number="25" color="" description="Ventas" />
-        <ElipseStatitics number="2" color="" description="Clientes Nuevos" />
-        <ElipseStatitics number="12" color="" description="Nuevas Compras" />
-        <ElipseStatitics number="25" color="" description="Productos Nuevos" />
+      <h4 className="lead display-6">BTC Hoy</h4>
+      <hr className="text-primary"/>
+
+      <div className="d-flex justify-content-between">
+        <ElipseStatitics number="1" color="" description="BTC" />
+        <ElipseStatitics number="4,426,479" color="" description="$ ARS" />
+        <ElipseStatitics number="866,199" color="" description="$ MEX" />
+        <ElipseStatitics number="34,826,256" color="" description="$ CLP" />
       </div>
     </section>
   )
 }
+
+v
