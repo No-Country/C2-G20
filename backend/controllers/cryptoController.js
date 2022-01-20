@@ -3,7 +3,6 @@ const db = require("../config/db");
 
 const axios = require("axios");
 
-enzo;
 
 exports.showCryptos = async (req, res, next) => {
   try {
@@ -55,7 +54,7 @@ exports.deleteCrypto = async (req, res, next) => {
 
 exports.getCrypto = async (req, res, next) => {
   const { symbol = "" } = req.params;
-  const clientes = await db.query(
+  const clients = await db.query(
     symbol
       ? `SELECT 
           clients.name, 
@@ -67,7 +66,7 @@ exports.getCrypto = async (req, res, next) => {
         WHERE clients.symbol_crypto = '${symbol}' `
       : "SELECT * FROM clients"
   );
-  res.send(clientes[0]);
+  res.send(clients[0]);
 };
 
 exports.newCrypto = async (req, res, next) => {
