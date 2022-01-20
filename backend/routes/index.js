@@ -15,8 +15,8 @@ module.exports = function () {
   // Obtiene todos los clientes
   router.get("/clients", clientController.showClients);
 
-  // Muestra un cliente en especifico (ID)
-  router.get("/clients/:idClient", clientController.showClient);
+  // Muestra un cliente en especifico (EMAIL)
+  router.get("/clients/:email", clientController.showClient);
 
   // Actualiza Cliente
   router.put("/clients/:idClient", clientController.updateClient);

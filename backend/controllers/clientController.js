@@ -23,7 +23,7 @@ exports.showClients = async (req, res, next) => {
 };
 
 exports.showClient = async (req, res, next) => {
-  const client = await Clients.findById(req.params.idClient);
+  const client = await Clients.findById(req.params.email);
 
   if (!client) {
     res.json({ message: "Client doesn't exists" });
@@ -35,19 +35,7 @@ exports.showClient = async (req, res, next) => {
 };
 
 exports.updateClient = async (req, res, next) => {
-  try {
-    const client = await Clients.findOneAndUpdate(
-      { _id: req.params.idClient },
-      req.body,
-      {
-        new: true,
-      }
-    );
-    res.json(client);
-  } catch (error) {
-    console.log(error);
-    next();
-  }
+ 
 };
 
 exports.deleteClient = async (req, res, next) => {
