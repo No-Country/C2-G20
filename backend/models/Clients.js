@@ -7,6 +7,7 @@ const Clients = db.define(
   {
     symbol_crypto: {
       type: Sequelize.STRING(10),
+      primaryKey: true,
     },
     name: {
       type: Sequelize.STRING(70),
