@@ -2,22 +2,28 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Login/login.css";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import clientAxios from "../../config/axios";
 
 export const Login = () => {
   const [credentials, setCredentials] = useState({});
 
+  const navigate = useNavigate();
+
   const login = async (e) => {
     e.preventDefault();
     try {
       const response = await clientAxios.post("/login", credentials);
-      console.log(response);
+
+      const { token } = response.data;
+      localStorage.setItem("token", token);
       if (response.status === 200) {
         Swal.fire({
           icon: "success",
           title: "Bienvenido",
           text: "Inicio de sesión exitoso",
         });
+        navigate("/dashboard");
       }
     } catch (error) {
       console.log(error);
