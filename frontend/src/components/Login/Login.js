@@ -1,13 +1,33 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Login/login.css";
-import Footer from "../Footer";
+import Swal from "sweetalert2";
+import clientAxios from "../../config/axios";
 
 export const Login = () => {
   const [credentials, setCredentials] = useState({});
 
-  
-
+  const login = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await clientAxios.post("/login", credentials);
+      console.log(response);
+      if (response.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Bienvenido",
+          text: "Inicio de sesión exitoso",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.response.data.message,
+      });
+    }
+  };
 
   const readInput = (e) => {
     setCredentials({
@@ -19,9 +39,7 @@ export const Login = () => {
   return (
     <>
       <div className="container bg-light">
-        <form
-          onSubmit={login}
-        >
+        <form onSubmit={login}>
           <div className="box text-dark shadow-lg border my-4">
             <h1 className="my-3">Inicia Sesión</h1>
             <i class="fas fa-users fa-3x my-2 text-primary"></i>
