@@ -29,21 +29,28 @@ module.exports = function () {
   /////////////////////////////////
 
   // Agrega nuevos cryptos via POST
+  // router.post("/cryptos", cryptoController.newCrypto);
+
+  //Ruta para crear nueva Crypto
   router.post("/cryptos", cryptoController.newCrypto);
 
-  // Obtiene todos los cryptos
-  router.get("/cryptos", cryptoController.showCryptos);
+  //Ruta para conseguir información de una crypto en especifico
+  router.get("/cryptos/:symbol", cryptoController.getCrypto);
 
-  router.get("/getCrypto", cryptoController.getCrypto);
+  //Ruta para buscar valor de crypto del dia de  hoy
+  router.get("/cryptos/:symbol/today", cryptoController.getCryptoValueDay);
+
+  // Obtiene todos los cryptos
+  // router.get("/cryptos", cryptoController.showCryptos);
 
   // Muestra un crypto en especifico (ID)
-  router.get("/cryptos/:idCrypto", cryptoController.showCrypto);
+  // router.get("/cryptos/:idCrypto", cryptoController.showCrypto);
 
   // Actualiza crypto
-  router.put("/cryptos/:idCrypto", cryptoController.updateCrypto);
+  // router.put("/cryptos/:idCrypto", cryptoController.updateCrypto);
 
   // Elimina crypto
-  router.delete("/cryptos/:idCrypto", cryptoController.deleteCrypto);
+  // router.delete("/cryptos/:idCrypto", cryptoController.deleteCrypto);
 
   return router;
 };
