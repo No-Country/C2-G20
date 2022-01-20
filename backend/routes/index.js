@@ -24,6 +24,9 @@ module.exports = function () {
   // Elimina Cliente
   router.delete("/clients/:idClient", clientController.deleteClient);
 
+  // Login Cliente
+  router.post("/clients/login", clientController.loginClient);
+
   /////////////////////////////////
   // Operaciones para cryptos (Cryptos)
   /////////////////////////////////
