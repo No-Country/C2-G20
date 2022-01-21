@@ -15,7 +15,11 @@ export const Login = () => {
             <div className="mb-4 d-flex justify-content-center">
               <input
                 type="email"
+<<<<<<< HEAD
                 className="form-control w-50 inputColor"
+=======
+                className="form-control w-75 inputColor"
+>>>>>>> enzo
                 placeholder="example@example.com"
                 required
               />
@@ -24,7 +28,11 @@ export const Login = () => {
             <div className="mb-4 d-flex justify-content-center">
               <input
                 type="password"
+<<<<<<< HEAD
                 className="form-control w-50 inputColor"
+=======
+                className="form-control w-75 inputColor"
+>>>>>>> enzo
                 placeholder="******"
                 required
               />

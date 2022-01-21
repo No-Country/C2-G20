@@ -4,7 +4,10 @@ const BartChart = ({data}) => {
 
   const options = {
     maintainAspectRatio: false,
+<<<<<<< HEAD
     responsive: true,
+=======
+>>>>>>> enzo
     scales: {
       y: {
         beginAtZero: true

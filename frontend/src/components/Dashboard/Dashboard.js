@@ -62,6 +62,7 @@ Chart.register(
 
 
 export default function Dashboard() {
+<<<<<<< HEAD
 
 
   return (
@@ -72,6 +73,16 @@ export default function Dashboard() {
     
       
       {/* <PolarChart data={dataPolar} />  */}
+=======
+  return (
+    <div className='chart-container '>
+      <BartChart data={dataBar}/>
+      <LineChart data={dataLine} />
+      <DoughnutChart data={dataDoughnut} />
+      <PieChart data={dataPie} />
+      <PolarChart data={dataPolar} /> 
+      <BartChart data={dataBar2}/>
+>>>>>>> enzo
     </div>
   );
 }
@@ -83,7 +94,11 @@ export default function Dashboard() {
 const dataBar = {
   labels: [],
   datasets: [{
+<<<<<<< HEAD
     label: 'Valor de la Crypto',
+=======
+    label: 'Value of Coin',
+>>>>>>> enzo
     data: [{id: 'Sales', nested: {value: 1500}}, {id: 'Purchases', nested: {value: 500}}],
     backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
@@ -108,9 +123,15 @@ const dataBar = {
     borderWidth: 1,
   }]
 }
+<<<<<<< HEAD
 const datos = [{x: 'Enero', net: 100, cogs: 50, gm: 50}, {x: 'Febrero', net: 300, cogs: 55, gm: 75}];
 const dataBar2 = {
   labels: ['Enero', 'Febrero'],
+=======
+const datos = [{x: 'Jan', net: 100, cogs: 50, gm: 50}, {x: 'Feb', net: 120, cogs: 55, gm: 75}];
+const dataBar2 = {
+  labels: ['Jan', 'Feb'],
+>>>>>>> enzo
   datasets: [{
       label: 'Net sales',
       data: datos,
@@ -129,9 +150,40 @@ const dataBar2 = {
       backgroundColor: [
         'rgb(54, 162, 235)',
       ],
+<<<<<<< HEAD
   }]
 }
 
+=======
+  }, {
+      label: 'Gross margin',
+      data: datos,
+      parsing: {
+          yAxisKey: 'gm'
+      },
+      backgroundColor: [
+        'rgb(255, 205, 86)'
+      ],
+  }]
+}
+const dataDoughnut = {
+  labels: [
+    'Red',
+    'Blue',
+    'Yellow'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 20
+  }]
+}
+>>>>>>> enzo
 const dataLine = {
   labels: [],
   datasets: [{
@@ -167,7 +219,35 @@ const dataLine = {
     hoverOffset: 20
   }]
 }
+<<<<<<< HEAD
 
+=======
+const dataPie = {
+  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [{
+    label: '# of Votes',
+    data: [12, 19, 3, 5, 2, 3],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+    ],
+    borderColor: [
+      'rgba(255, 99, 132, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+    borderWidth: 1,
+    hoverOffset: 20
+  }]
+}
+>>>>>>> enzo
 const dataPolar = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
   datasets: [{

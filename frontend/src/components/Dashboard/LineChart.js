@@ -1,10 +1,17 @@
 import { Line } from "react-chartjs-2";
 
+<<<<<<< HEAD
 export default function LineChart () {
 
   const options = {
     maintainAspectRatio: false,
     responsive: true,
+=======
+export default function LineChart ({data}) {
+
+  const options = {
+    maintainAspectRatio: false,
+>>>>>>> enzo
     scales: {
       y: {
         beginAtZero: true
@@ -30,6 +37,7 @@ export default function LineChart () {
       }
   }
   }
+<<<<<<< HEAD
 
   const dataLine = {
     labels: [],
@@ -74,5 +82,12 @@ export default function LineChart () {
       options={options}
       width={500} height={300}
       />
+=======
+  return <div>
+      {/* <h1>Line Chart</h1> */}
+      <Line
+      data={data}
+      options={options}/>
+>>>>>>> enzo
   </div>
 }

@@ -1,10 +1,17 @@
 import { Pie } from "react-chartjs-2";
 
+<<<<<<< HEAD
 export default function PieChart () {
 
   const options = {
     maintainAspectRatio: false,
     responsive: true,
+=======
+export default function PieChart ({data}) {
+
+  const options = {
+    maintainAspectRatio: true,
+>>>>>>> enzo
     legend: {
       labels: {
         fontSize: 26
@@ -18,6 +25,7 @@ export default function PieChart () {
   }
   }
 
+<<<<<<< HEAD
   const dataPie = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [{
@@ -55,5 +63,12 @@ export default function PieChart () {
       />
      
       
+=======
+  return <div>
+      {/* <h1>Pie Chart</h1> */}
+      <Pie
+      data={data}
+      options={options}/>
+>>>>>>> enzo
   </div>
 }

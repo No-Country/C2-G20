@@ -1,10 +1,16 @@
 import { Doughnut } from "react-chartjs-2";
 
+<<<<<<< HEAD
 export default function DoughnutChart () {
 
   const options = {
     maintainAspectRatio: false,
     responsive: true,
+=======
+export default function DoughnutChart ({data}) {
+
+  const options = {
+>>>>>>> enzo
     legend: {
       labels: {
         fontSize: 26
@@ -18,6 +24,7 @@ export default function DoughnutChart () {
     }
   }
 
+<<<<<<< HEAD
   const dataDoughnut = {
     labels: [
       'ARS',
@@ -42,5 +49,12 @@ export default function DoughnutChart () {
       options={options}
       width={500} height={400}
       />
+=======
+
+  return <div>
+      <Doughnut
+      data={data}
+      options={options}/>
+>>>>>>> enzo
   </div>
 }
