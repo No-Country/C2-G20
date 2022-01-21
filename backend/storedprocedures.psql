@@ -1,0 +1,16 @@
+CREATE OR REPLACE PROCEDURE updatecrypto (x r)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE
+        cryptos
+    SET
+        price = price,
+        highday = highday,
+        lowday = lowday,
+        changepct24h = changepct24h,
+        lastupdate = lastupdate;
+    COMMIT;
+END;
+$$;
+
