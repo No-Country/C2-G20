@@ -3,6 +3,8 @@ import CardStatitics from "../../components/CardStatitics"
 import ElipseStatitics from "../../components/ElipseStatitics"
 import imageStatiticsMonth from "../../images/estadisticas-mes.png"
 import imageStatiticsWeekly from "../../images/estadisticas-semana.png"
+import Dashboard from "../../components/Dashboard/Dashboard"
+import BartChart from "../../components/Dashboard/BarChart"
 
 export default function DashboardStatitics() {
   return (

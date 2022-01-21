@@ -1,9 +1,10 @@
-import Retail from "../../components/Retail"
+
+import { Login }  from "../../components/Login/Login";
 
 export default function Home() {
   return (
-    <section className="section-retail">
-      <Retail />
+    <section className="">
+     <Login />
     </section>
   )
 }
