@@ -50,7 +50,7 @@ const [lineChart, setLineChart] = useState(false);
           }
            {pieChart ? (
              
-          <PieChart setPieChart={setPieChart} width={300} height={300} />
+          <PieChart width={500} height={500} />
         ) : null
         }
 

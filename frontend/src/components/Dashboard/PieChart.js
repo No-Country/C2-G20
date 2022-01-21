@@ -3,7 +3,7 @@ import { Pie } from "react-chartjs-2";
 export default function PieChart () {
 
   const options = {
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     responsive: true,
     legend: {
       labels: {
@@ -49,6 +49,8 @@ export default function PieChart () {
       <Pie
       data={dataPie}
       options={options}
+      width={500}
+      height={500}
       
       />
      
