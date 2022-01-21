@@ -1,32 +1,20 @@
 const Sequelize = require("sequelize");
+const Clients = require("../models/Clients");
+const Crypto_Values = require("../models/Crypto_Values");
+const Values = require("../models/Values");
+
 const db = require("../config/db");
 
 const Cryptos = db.define("cryptos", {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+  symbol_crypto: {
+    type: Sequelize.STRING(10),
   },
   name: {
-    type: Sequelize.STRING(60),
-  },
-  currency: {
-    type: Sequelize.STRING(60),
-  },
-  price: {
-    type: Sequelize.DECIMAL,
-  },
-  highday: {
-    type: Sequelize.DECIMAL,
-  },
-  lowday: {
-    type: Sequelize.DECIMAL,
-  },
-  changepct24h: {
-    type: Sequelize.DECIMAL,
-  },
-  lastupdate: {
-    type: Sequelize.STRING(60),
+    type: Sequelize.STRING(70),
   },
 });
+
+Cryptos.hasOne(Clients, { foreignKey: "symbol_crypto" }),
+  Cryptos.hasMany(Crypto_Values, { foreignKey: "symbol_crypto" });
+
 module.exports = Cryptos;
