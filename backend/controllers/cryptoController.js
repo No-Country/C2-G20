@@ -3,7 +3,6 @@ const db = require("../config/db");
 
 const axios = require("axios");
 
-
 exports.showCryptos = async (req, res, next) => {
   try {
     const cryptos = await Cryptos.find({});
