@@ -4,6 +4,7 @@ export default function PieChart () {
 
   const options = {
     maintainAspectRatio: true,
+    responsive: true,
     legend: {
       labels: {
         fontSize: 26
@@ -44,7 +45,7 @@ export default function PieChart () {
   }
 
   return <div>
-      {/* <h1>Pie Chart</h1> */}
+
       <Pie
       data={dataPie}
       options={options}

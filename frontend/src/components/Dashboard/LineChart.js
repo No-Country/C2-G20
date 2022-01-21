@@ -67,13 +67,11 @@ export default function LineChart () {
     }]
   }
 
-  return <div>
+  return <div className="container mx-5">
       {/* <h1>Line Chart</h1> */}
       <Line
       data={dataLine}
       options={options}
-      width={500}
-      height={300}
       />
   </div>
 }
