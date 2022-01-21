@@ -1,7 +1,5 @@
 
 import "./App.css"
-import Header from "./components/Header"
-import "./App.css"
 import Footer from "./components/Footer"
 import {
   BrowserRouter as Router,
@@ -16,7 +14,6 @@ import { ControlPanel } from "./pages/PanelDeControl/ControlPanel"
 import { Configuracion } from "./pages/Configuracion/Configuracion"
 import { Cliente } from "./pages/Cliente/Cliente"
 import NavBar from "./components/Nav"
-
 
 function App() {
   const { pathname } = useLocation()

@@ -25,7 +25,7 @@ export const ControlPanel = () => {
         src={logo}
         className="w-50  animate__animated animate__fadeIn"
         alt="logo dashboard "
-      />vvvvv
+      />
       <Footer />
     </div>
   );

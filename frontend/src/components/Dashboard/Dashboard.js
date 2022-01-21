@@ -62,14 +62,16 @@ Chart.register(
 
 
 export default function Dashboard() {
+
+
   return (
-    <div className='chart-container '>
+    <div className='chart-container'>
       <BartChart data={dataBar}/>
-      <LineChart data={dataLine} />
-      <DoughnutChart data={dataDoughnut} />
-      <PieChart data={dataPie} />
-      <PolarChart data={dataPolar} /> 
       <BartChart data={dataBar2}/>
+      
+      {/* <DoughnutChart data={dataDoughnut} /> */}
+      
+      {/* <PolarChart data={dataPolar} />  */}
     </div>
   );
 }
@@ -81,7 +83,7 @@ export default function Dashboard() {
 const dataBar = {
   labels: [],
   datasets: [{
-    label: 'Value of Coin',
+    label: 'Valor de la Crypto',
     data: [{id: 'Sales', nested: {value: 1500}}, {id: 'Purchases', nested: {value: 500}}],
     backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
@@ -106,9 +108,9 @@ const dataBar = {
     borderWidth: 1,
   }]
 }
-const datos = [{x: 'Jan', net: 100, cogs: 50, gm: 50}, {x: 'Feb', net: 120, cogs: 55, gm: 75}];
+const datos = [{x: 'Enero', net: 100, cogs: 50, gm: 50}, {x: 'Febrero', net: 300, cogs: 55, gm: 75}];
 const dataBar2 = {
-  labels: ['Jan', 'Feb'],
+  labels: ['Enero', 'Febrero'],
   datasets: [{
       label: 'Net sales',
       data: datos,
@@ -126,15 +128,6 @@ const dataBar2 = {
       },
       backgroundColor: [
         'rgb(54, 162, 235)',
-      ],
-  }, {
-      label: 'Gross margin',
-      data: datos,
-      parsing: {
-          yAxisKey: 'gm'
-      },
-      backgroundColor: [
-        'rgb(255, 205, 86)'
       ],
   }]
 }
@@ -190,31 +183,7 @@ const dataLine = {
     hoverOffset: 20
   }]
 }
-const dataPie = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  datasets: [{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(255, 159, 64, 0.2)'
-    ],
-    borderColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)'
-    ],
-    borderWidth: 1,
-    hoverOffset: 20
-  }]
-}
+
 const dataPolar = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
   datasets: [{

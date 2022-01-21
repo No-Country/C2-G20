@@ -4,6 +4,7 @@ const BartChart = ({data}) => {
 
   const options = {
     maintainAspectRatio: false,
+    responsive: true,
     scales: {
       y: {
         beginAtZero: true
