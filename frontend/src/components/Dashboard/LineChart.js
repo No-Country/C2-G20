@@ -72,6 +72,7 @@ export default function LineChart () {
       <Line
       data={dataLine}
       options={options}
+      width={500} height={300}
       />
   </div>
 }

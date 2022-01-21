@@ -90,18 +90,18 @@ const [lineChart, setLineChart] = useState(false);
        </div>
           
       </div>
-      <h4 className="lead display-6">BTC Hoy</h4>
+      <h4 className="lead display-6 my-3">BTC Hoy</h4>
       <hr className="text-primary"/>
 
       <div className="container mb-4 mx-5 row">
         <div className="col-md-9">
-        <DoughnutChart />
+        <DoughnutChart width={500} height={400} />
         </div>
 
       <div className="col-md-3">
       <p className="lead mx-4">ARS: <i class="fas fa-dollar-sign text-primary"></i> 4,414,892</p>
           <p className="lead mx-4">MXN:  <i class="fas fa-dollar-sign text-primary"></i> 864,902</p>
-          <p className="lead mx-4">EUR:  <i class="fas fa-dollar-sign text-primary"></i> 37,253</p>
+          <p className="lead mx-4">EUR:  <i class="fas fa-euro-sign text-primary"></i> 37,253</p>
       </div>
       </div>
     </section>

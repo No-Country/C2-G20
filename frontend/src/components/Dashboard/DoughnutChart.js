@@ -26,7 +26,7 @@ export default function DoughnutChart () {
     ],
     datasets: [{
       label: 'My First Dataset',
-      data: [4414892, 864902, 370253],
+      data: [4414892, 864902, 37253],
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
@@ -40,6 +40,7 @@ export default function DoughnutChart () {
       <Doughnut
       data={dataDoughnut}
       options={options}
+      width={500} height={400}
       />
   </div>
 }
