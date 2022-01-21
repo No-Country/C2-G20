@@ -159,75 +159,191 @@ exports.newCrypto = async (req, res, next) => {
   res.send("OK");
 };
 
-//Retorna el dia de hoy en formato Date
-async function getDateToday(toFormat) {
-  const date = new Date();
-  const year = date.getFullYear();
-  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-  const month =
-    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
-  const timestamps = await new Date(year, month - 1, day).getTime();
-  const tsTomorrow = new Date(year, month - 1, day + 1).getTime();
-  const dateObj = {
+//Retorna el dia de hoy en formato Date y timestamps
+async function getDateToday() {
+  const {
     year,
-    day,
     month,
-    dateFormat: [year, month, day].join("-"),
+    day,
+    dateString: today,
+  } = timestampsToDate(new Date().getTime());
+  const timestamps = dateToTimestamps({ year, month: month - 1, day });
+  const tsTomorrow = dateToTimestamps({ year, month: month - 1, day: day + 1 });
+  const dateObj = {
+    today,
     timestamps,
-    tsTomorrow,
   };
   return dateObj;
 }
 
-//Consigue el valor de una crypto segun el dia (Aun haciendo)
-exports.getCryptoValueDay = async (req, res, next) => {
-  const api_key =
-    "d5d9be9bb78a96b8ea233122bac0cf8b2659f6464a8b0cecd7e23cbd855d3593";
-  const { symbol } = req.params;
-  const date = await getDateToday(true);
-  let value;
+//Funcion que al pasarle un timestamps te devuelve el año, dia y fecha ademas un date en formato string
+function timestampsToDate(timestamps, separator = "-") {
+  const date = new Date(timestamps);
+  const year = date.getFullYear();
+  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const month =
+    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  const dateString = [year, month, day].join(`${separator}`);
+  return { year, day, month, dateString };
+}
+
+//Funcion que devuelve timestamps del año, mes y dia que le pases
+function dateToTimestamps({ year, month, day }, dateString) {
+  if (dateString) {
+    const dateSplit = dateString.split("-");
+    year = dateSplit[0];
+    month = dateSplit[1] - 1;
+    day = dateSplit[2];
+  }
+  const date = new Date(year, month, day);
+  return date.getTime();
+}
+
+async function insertNewValue({
+  day,
+  symbol,
+  priceMax,
+  priceMin,
+  usd,
+  mxn,
+  eur,
+}) {
   try {
-    today = date.dateFormat;
-    value = await db.query(
+    const newValue = await db.query(
       `
-      SELECT * FROM values
-      INNER JOIN crypto_values cv
-      ON cv.id_value = values.id_value
-      WHERE values.date = '${today}' AND cv.symbol_crypto = '${symbol}'
-      `
-    );
-    if (!value[0].length) {
-      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbol}&tsyms=USD,EUR,MXN&toTs=${date.tsTomorrow}&api_key=${api_key}`;
-      const resdivisasToday = await axios({ url, method: "get" });
-      const { USD, MXN, EUR } = resdivisasToday.data.RAW[symbol.toUpperCase()];
-      const { PRICE, HIGHDAY, LOWDAY } = USD;
-      const newValue = await db.query(
-        `
         INSERT INTO values (value, value_max, value_min, mxn, eur, usd, date)
-        VALUES ( ${PRICE}, ${HIGHDAY}, ${LOWDAY}, ${MXN.PRICE}, ${EUR.PRICE}, ${PRICE}, '${today}')
+        VALUES ( ${usd}, ${priceMax}, ${priceMin}, ${mxn}, ${eur}, ${usd}, '${day}')
         RETURNING id_value;
         `
-      );
-      const newCryptoValue = await db.query(
-        `
+    );
+    const newCryptoValue = await db.query(
+      `
         INSERT INTO crypto_values (symbol_crypto, id_value)
-        VALUES ( '${symbol}' , ${newValue[0][0].id_value})
+        VALUES ('${symbol}', ${newValue[0][0].id_value})
         `
-      );
-      const selectNew = await db.query(
-        `
+    );
+    let value = await db.query(
+      `
         SELECT * FROM values
         INNER JOIN crypto_values cv
         ON cv.id_value = values.id_value
-        WHERE values.date = '${today}' AND cv.symbol_crypto = '${symbol}'
+        WHERE values.date = '${day}' AND cv.symbol_crypto = '${symbol}'
         `
-      );
-      return res.send(selectNew[0][0]);
-      // value[0] = divisasToday;
-    }
+    );
+    return value;
   } catch (e) {
-    console.log("el errooor", e.name);
-    if (e.name === "TypeError") res.status(404).send("typeError");
+    console.log(e.name);
+    if (e.name === "TypeError") return (value = "typeEror");
+    else return (value = e.name);
+  }
+}
+
+//Consigue el valor de una crypto segun el dia (Aun haciendo)
+exports.getCryptoValueToday = async (req, res, next) => {
+  const api_key =
+    "d5d9be9bb78a96b8ea233122bac0cf8b2659f6464a8b0cecd7e23cbd855d3593";
+  const { symbol } = req.params;
+  const { today } = await getDateToday();
+  let value = await db.query(
+    `
+    SELECT * FROM values
+    INNER JOIN crypto_values cv
+    ON cv.id_value = values.id_value
+    WHERE values.date = '${today}' AND cv.symbol_crypto = '${symbol}'
+    `
+  );
+
+  // Si no hay valor se busca en la api externa y se crea uno
+  if (!value[0].length) {
+    //hacemos una llamada a la api que nos va a traer los valores de la crypto
+    const options = {
+      url: `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbol}&tsyms=USD,EUR,MXN&api_key=${api_key}`,
+      method: "get",
+    };
+    const resValuesToday = await axios(options);
+    const { USD, MXN, EUR } = resValuesToday.data.RAW[symbol.toUpperCase()];
+
+    //y luego hacemos una nueva insercion en la base de datos
+    value = await insertNewValue({
+      day: today,
+      symbol,
+      priceMax: USD.HIGHDAY,
+      priceMin: USD.LOWDAY,
+      usd: USD.PRICE,
+      mxn: MXN.PRICE,
+      eur: EUR.PRICE,
+    });
+  }
+
+  res.send(value[0][0]);
+};
+
+function verifyDate(date) {
+  if (!date.startsWith("2")) return false;
+  if (!date.includes("-")) return false;
+  const dateSplit = date.split("-");
+  if (dateSplit.length > 3 || dateSplit.length < 3) return false;
+  if (dateSplit[0].length < 4) return false;
+  if (dateSplit[1] > 12) return false;
+  if (dateSplit[2] > 31) return false;
+
+  return true;
+}
+
+//Consigue los valores de cualquier dia
+exports.getCryptoValueDay = async (req, res, next) => {
+  const { symbol, date } = req.params;
+  const isCorrectDate = await verifyDate(date);
+  if (!isCorrectDate) return res.status(401).send({ err: "fecha incorecta" });
+
+  let value = await db.query(
+    `
+    SELECT * FROM values
+    INNER JOIN crypto_values cv
+    ON cv.id_value = values.id_value
+    WHERE values.date = '${date}' AND cv.symbol_crypto = '${symbol}'
+    `
+  );
+
+  if (!value[0].length) {
+    const api_key =
+      "d5d9be9bb78a96b8ea233122bac0cf8b2659f6464a8b0cecd7e23cbd855d3593";
+    const timestamps = await dateToTimestamps({}, date);
+    const { year, month, day, dateString } = timestampsToDate(timestamps);
+    const timestampsTomorrow = dateToTimestamps({
+      year,
+      month: parseInt(month) - 1,
+      day: parseInt(day) + 1,
+    });
+    const timestampsTomorrowForApi = `${timestampsTomorrow}`.slice(0, -3);
+    const timestampsForApi = `${timestamps}`.slice(0, -3);
+    let options = {
+      url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=1&toTs=${timestampsTomorrowForApi}&api_key=${api_key}`,
+      method: "get",
+    };
+    const valuesDay = await axios(options);
+    options = {
+      url: `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${symbol}&tsyms=USD,EUR,MXN&ts=${timestampsForApi}&api_key=${api_key}`,
+      method: "get",
+    };
+    const { data: valuesAll } = await axios(options);
+    const { low, high } = valuesDay.data.Data.Data[1];
+    const {
+      USD: usd,
+      MXN: mxn,
+      EUR: eur,
+    } = valuesAll[`${symbol.toUpperCase()}`];
+
+    value = await insertNewValue({
+      day: dateString,
+      symbol,
+      priceMax: high,
+      priceMin: low,
+      usd,
+      mxn,
+      eur,
+    });
+    return value;
   }
 
   res.send(value[0][0]);

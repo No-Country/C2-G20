@@ -35,11 +35,19 @@ module.exports = function () {
   router.post("/cryptos", cryptoController.newCrypto);
 
   //Ruta para conseguir información de una crypto en especifico
-  router.get("/cryptos/:symbol", cryptoController.getCrypto);
+  router.get("/cryptos/info/:symbol", cryptoController.getCrypto);
 
   //Ruta para buscar valor de crypto del dia de  hoy
-  router.get("/cryptos/:symbol/today", cryptoController.getCryptoValueDay);
+  router.get(
+    "/cryptos/values/:symbol/today",
+    cryptoController.getCryptoValueToday
+  );
 
+  //Ruta para buscar valor de crypto del dia que le pases
+  router.get(
+    "/cryptos/values/:symbol/:date",
+    cryptoController.getCryptoValueDay
+  );
   // Obtiene todos los cryptos
   // router.get("/cryptos", cryptoController.showCryptos);
 
