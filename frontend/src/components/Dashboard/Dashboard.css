@@ -1,14 +1,9 @@
 .chart-container {
   display: flex;
-<<<<<<< HEAD
   flex-wrap: nowrap;
   justify-content: space-evenly;
   width:100%;
   height: 80vh;
-=======
-  flex-wrap: wrap;
-  justify-content: space-evenly;
->>>>>>> enzo
 }
 .chart-container > div {
   margin: 10px 20px;
@@ -18,7 +13,3 @@ canvas {
   background-color: #fff;
   border-radius: 16px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> enzo

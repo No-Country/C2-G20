@@ -3,13 +3,8 @@
   font-family: 'Open Sans', serif;
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
-<<<<<<< HEAD
   --bg-primary: #017ADB;
   --bg-secondary: #06589b;
-=======
-  --bg-primary: #23232e;
-  --bg-secondary: #141418;
->>>>>>> enzo
   --transition-speed: 600ms;
 }
 body::-webkit-scrollbar {
@@ -19,27 +14,16 @@ body::-webkit-scrollbar-track {
   background: #1e1e24;
 }
 body::-webkit-scrollbar-thumb {
-<<<<<<< HEAD
   background: #017ADB;
-=======
-  background: #6649b8;
->>>>>>> enzo
 }
 .navbar {
   position: fixed;
   background-color: var(--bg-primary);
-<<<<<<< HEAD
   font-weight: bold;
   transition: width 200ms ease;
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: hidden;
-=======
-  transition: width 200ms ease;
-  overflow: scroll;
- overflow-x: hidden;
- overflow-y: hidden ;
->>>>>>> enzo
 }
 .navbar-nav {
   list-style: none;
@@ -50,30 +34,17 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   align-items: center;
   height: 100%;
-<<<<<<< HEAD
 }
 .nav-item {
   width: 100%;
 }
 .nav-item:last-child {
   margin-top: auto;
-=======
-  
-}
-.nav-item {
-  width: 100%;
-  
-}
-.nav-item:last-child {
-  margin-top: auto;
-  
->>>>>>> enzo
 }
 .nav-link {
   display: flex;
   align-items: center;
   height: 5rem;
-<<<<<<< HEAD
   color: #FFF;
   text-decoration: none;
   transition: var(--transition-speed);
@@ -91,26 +62,10 @@ body::-webkit-scrollbar-thumb {
   color: #FFF;
 }
 
-=======
-  color: var(--text-primary);
-  text-decoration: none;
-  filter: grayscale(100%) opacity(0.7);
-  transition: var(--transition-speed);
-  
-}
-.link-text {
-  display: none;
-  margin-left: 1rem;
-}
-.nav-link:hover {
-  filter: grayscale(0) opacity(1);
-}
->>>>>>> enzo
 .nav-link svg {
   width: 2rem;
   min-width: 2rem;
   margin: 0 1rem;
-<<<<<<< HEAD
  color: #FFF;
 }
 
@@ -119,16 +74,6 @@ body::-webkit-scrollbar-thumb {
 }
 .fa-secondary {
   color: #b5d8f5;
-=======
-  color: #017ADB;
-}
-
-.fa-primary {
-  color: #017ADB;
-}
-.fa-secondary {
-  color: #4190d1;
->>>>>>> enzo
 }
 .fa-primary, 
 .fa-secondary {
@@ -140,11 +85,6 @@ body::-webkit-scrollbar-thumb {
   margin-bottom: 1rem;
   text-align: center;
   color: var(--text-secondary);
-<<<<<<< HEAD
-
-=======
-  background: var(--bg-secondary);
->>>>>>> enzo
   font-size: 1.5rem;
   letter-spacing: 0.3ch;
   width: 100%;
@@ -172,10 +112,6 @@ body::-webkit-scrollbar-thumb {
   color: var(--text-secondary);
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> enzo
 /* ---------------- @Query ------------------ */
 /*small screens*/
 @media only screen and (max-width: 600px) {
@@ -204,11 +140,7 @@ body::-webkit-scrollbar-thumb {
   }
 }
 /*large screens*/
-<<<<<<< HEAD
 @media only screen and (min-width: 601px) {
-=======
-@media only screen and (min-width: 600px) {
->>>>>>> enzo
   .navbar {
     width: 4rem;
     height: 100vh;
