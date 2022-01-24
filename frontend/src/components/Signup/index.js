@@ -1,51 +1,12 @@
-import { useState } from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../Login/login.css"
-import Swal from "sweetalert2"
-import { useNavigate } from "react-router-dom"
-import clientAxios from "../../config/axios"
-
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../Login/login.css";
+import Footer from "../Footer";
 export const Login = () => {
-  const [credentials, setCredentials] = useState({})
-
-  const navigate = useNavigate()
-
-  const login = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await clientAxios.post("/login", credentials)
-
-      const { token } = response.data
-      localStorage.setItem("token", token)
-      if (response.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Bienvenido",
-          text: "Inicio de sesión exitoso",
-        })
-        navigate("/dashboard")
-      }
-    } catch (error) {
-      console.log(error)
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: error.response.data.message,
-      })
-    }
-  }
-
-  const readInput = (e) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value,
-    })
-  }
-
   return (
     <>
       <div className="container bg-light">
-        <form onSubmit={login}>
+        <form>
           <div className="box text-dark shadow-lg border my-4">
             <h1 className="my-3">Inicia Sesión</h1>
             <i class="fas fa-users fa-3x my-2 text-primary"></i>
@@ -56,11 +17,9 @@ export const Login = () => {
             <div className="mb-4 d-flex justify-content-center">
               <input
                 type="email"
-                name="email"
                 className="form-control w-75 inputColor"
                 placeholder="example@example.com"
                 required
-                onChange={readInput}
               />
             </div>
             <label className="form-label">
@@ -69,15 +28,12 @@ export const Login = () => {
             <div className="mb-4 d-flex justify-content-center">
               <input
                 type="password"
-                name="password"
                 className="form-control w-75 inputColor"
                 placeholder="******"
                 required
-                onChange={readInput}
               />
             </div>
-
-            <button type="submit" className="botonIngresar my-4">
+            <button className="botonIngresar my-4">
               Ingresar <i class="fas fa-sign-in-alt"></i>
             </button>
             <p className="form-text">
@@ -87,5 +43,5 @@ export const Login = () => {
         </form>
       </div>
     </>
-  )
-}
+  );
+};

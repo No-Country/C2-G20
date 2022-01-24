@@ -126,7 +126,7 @@ const axios = require("axios");
 //Busca la info de una crypto
 exports.getCrypto = async (req, res, next) => {
   const { symbol = "" } = req.params;
-  const clientes = await db.query(
+  const clients = await db.query(
     symbol
       ? `SELECT 
           clients.name, 
@@ -138,10 +138,9 @@ exports.getCrypto = async (req, res, next) => {
         WHERE clients.symbol_crypto = '${symbol}' `
       : "SELECT * FROM clients"
   );
-  res.send(clientes[0]);
+  res.send(clients[0]);
 };
 
-//Crea una nueva crypto y un nuevo cliente
 exports.newCrypto = async (req, res, next) => {
   const { symbol_crypto, name, email, password, verified = false } = req.body;
   const newClient = await db.query(

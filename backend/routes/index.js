@@ -3,6 +3,7 @@ const router = express.Router();
 
 const clientController = require("../controllers/clientController");
 const cryptoController = require("../controllers/cryptoController");
+const auth = require("../middleware/auth");
 
 module.exports = function () {
   //////////////////////////////////
@@ -13,16 +14,21 @@ module.exports = function () {
   router.post("/clients", clientController.newClient);
 
   // Obtiene todos los clientes
-  router.get("/clients", clientController.showClients);
+  router.get("/clients", 
+  auth,
+  clientController.showClients);
 
-  // Muestra un cliente en especifico (ID)
-  router.get("/clients/:idClient", clientController.showClient);
+  // Muestra un cliente en especifico (EMAIL)
+  router.get("/clients/:email", clientController.showClient);
 
   // Actualiza Cliente
   router.put("/clients/:idClient", clientController.updateClient);
 
   // Elimina Cliente
   router.delete("/clients/:idClient", clientController.deleteClient);
+
+  // Login Cliente
+  router.post("/login", clientController.authClient);
 
   /////////////////////////////////
   // Operaciones para cryptos (Cryptos)

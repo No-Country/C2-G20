@@ -1,5 +1,4 @@
 const Sequelize = require("sequelize");
-const Cryptos = require("../models/Cryptos");
 const db = require("../config/db");
 const bcrypt = require("bcrypt");
 
@@ -38,7 +37,5 @@ const Clients = db.define(
 Clients.prototype.verifyPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
-
-Clients.hasOne(Cryptos, { foreignKey: "symbol_crypto" });
 
 module.exports = Clients;

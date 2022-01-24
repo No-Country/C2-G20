@@ -1,8 +1,9 @@
 const Sequelize = require("sequelize");
+const Crypto_Values = require("./Crypto_Values");
 const db = require("../config/db");
 
 const Values = db.define("values", {
-  symbol_crypto: {
+  id_value: {
     type: Sequelize.STRING(10),
     primaryKey: true,
   },
@@ -31,4 +32,7 @@ const Values = db.define("values", {
     type: Sequelize.DATE,
   },
 });
+
+Values.hasMany(Crypto_Values, { foreignKey: "id_value" });
+
 module.exports = Values;
