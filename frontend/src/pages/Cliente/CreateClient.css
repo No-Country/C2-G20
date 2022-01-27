@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.create-client {
+  text-align: initial;
+  font-family: 'Roboto', sans-serif;
+  background: #f0efef;
+  height: 100vh;
+}
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+}
