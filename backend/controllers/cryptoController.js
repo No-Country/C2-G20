@@ -2,6 +2,7 @@ const Cryptos = require("../models/Cryptos");
 const db = require("../config/db");
 
 const axios = require("axios");
+<<<<<<< HEAD
 // exports.getCrypto = async (req, res, next) => {
 //   const cryptos = {
 //     BTC: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=btc&tsyms=usd",
@@ -76,6 +77,8 @@ exports.showCryptos = async (req, res, next) => {
 //     next();
 //   }
 // };
+=======
+>>>>>>> 2a43a45e06aa7f91f1203ef460cc04a28f8ef0aa
 
 //Busca la info de una crypto
 exports.getCrypto = async (req, res, next) => {
@@ -162,27 +165,10 @@ async function insertNewValue({
   eur,
 }) {
   try {
-    const newValue = await db.query(
-      `
-        INSERT INTO values (value, value_max, value_min, mxn, eur, usd, date)
-        VALUES ( ${usd}, ${priceMax}, ${priceMin}, ${mxn}, ${eur}, ${usd}, '${day}')
-        RETURNING id_value;
-        `
-    );
-    const newCryptoValue = await db.query(
-      `
-        INSERT INTO crypto_values (symbol_crypto, id_value)
-        VALUES ('${symbol}', ${newValue[0][0].id_value})
-        `
-    );
-    let value = await db.query(
-      `
-        SELECT * FROM values
-        INNER JOIN crypto_values cv
-        ON cv.id_value = values.id_value
-        WHERE values.date = '${day}' AND cv.symbol_crypto = '${symbol}'
-        `
-    );
+    let value = await db.query(`
+      SELECT * FROM uspAddValue
+      ('${symbol}', ${usd}, ${priceMin}, ${priceMax},${usd},${mxn},${eur},'${day}')
+      `);
     return value;
   } catch (e) {
     console.log(e.name);
@@ -243,6 +229,19 @@ function verifyDate(date) {
   return true;
 }
 
+async function getTimestampsForApi(date) {
+  const timestamps = await dateToTimestamps({}, date);
+  const { year, month, day, dateString } = timestampsToDate(timestamps);
+  const timestampsTomorrow = dateToTimestamps({
+    year,
+    month: parseInt(month) - 1,
+    day: parseInt(day) + 1,
+  });
+  const timestampsTomorrowForApi = `${timestampsTomorrow}`.slice(0, -3);
+  const timestampsForApi = `${timestamps}`.slice(0, -3);
+  return { timestampsTomorrowForApi, timestampsForApi, dateString };
+}
+
 //Consigue los valores de cualquier dia
 exports.getCryptoValueDay = async (req, res, next) => {
   const { symbol, date } = req.params;
@@ -261,26 +260,15 @@ exports.getCryptoValueDay = async (req, res, next) => {
   if (!value[0].length) {
     const api_key =
       "d5d9be9bb78a96b8ea233122bac0cf8b2659f6464a8b0cecd7e23cbd855d3593";
-    const timestamps = await dateToTimestamps({}, date);
-    const { year, month, day, dateString } = timestampsToDate(timestamps);
-    const timestampsTomorrow = dateToTimestamps({
-      year,
-      month: parseInt(month) - 1,
-      day: parseInt(day) + 1,
-    });
-    const timestampsTomorrowForApi = `${timestampsTomorrow}`.slice(0, -3);
-    const timestampsForApi = `${timestamps}`.slice(0, -3);
-    let options = {
-      url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=1&toTs=${timestampsTomorrowForApi}&api_key=${api_key}`,
-      method: "get",
-    };
-    const valuesDay = await axios(options);
-    options = {
-      url: `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${symbol}&tsyms=USD,EUR,MXN&ts=${timestampsForApi}&api_key=${api_key}`,
-      method: "get",
-    };
-    const { data: valuesAll } = await axios(options);
-    const { low, high } = valuesDay.data.Data.Data[1];
+    const { timestampsTomorrowForApi, timestampsForApi, dateString } =
+      await getTimestampsForApi(date);
+    const { data: valuesDay } = await axios.get(
+      `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=1&toTs=${timestampsTomorrowForApi}&api_key=${api_key}`
+    );
+    const { data: valuesAll } = await axios.get(
+      `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${symbol}&tsyms=USD,EUR,MXN&ts=${timestampsForApi}&api_key=${api_key}`
+    );
+    const { low, high } = valuesDay.Data.Data[1];
     const {
       USD: usd,
       MXN: mxn,
@@ -296,7 +284,6 @@ exports.getCryptoValueDay = async (req, res, next) => {
       mxn,
       eur,
     });
-    return value;
   }
 
   res.send(value[0][0]);
