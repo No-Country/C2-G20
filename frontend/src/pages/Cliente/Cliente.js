@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react"
-import { Icon } from "@iconify/react"
 import "./Cliente.css"
 import JASONDATA from "./../../MOCK_DATA.json"
+import CreateClient from "./CreateClient"
+import {BotonCentrado, Boton} from "../../styledComponents/Formulario"
 
 function RenderClients({ clients }) {
   return (
@@ -19,11 +20,11 @@ function RenderClients({ clients }) {
         {clients.map((val) => {
           return (
             <tr key={val.id}>
-              <td>{val.first_name}</td>
-              <td>{val.last_name}</td>
-              <td>{val.email}</td>
-              <td>{val.country}</td>
-              <td>{val.phone}</td>
+              <td data-label='Nombre'>{val.first_name}</td>
+              <td data-label='Apellido'>{val.last_name}</td>
+              <td data-label='Email'>{val.email}</td>
+              <td data-label='Pais'>{val.country}</td>
+              <td data-label='Telefono'>{val.phone}</td>
             </tr>
           )
         })}
@@ -36,8 +37,8 @@ export const Cliente = () => {
   const [clients, setClients] = useState(JASONDATA)
   const [searchClient, setSearchClient] = useState("")
   const [searchResults, setSearchResults] = useState([1])
+  const [formClient, setFormClient] = useState(false)
   const inputEl = useRef("")
-  console.log("mount")
 
   const getSearchClient = () => {
     searchHandler(inputEl.current.value)
@@ -56,15 +57,17 @@ export const Cliente = () => {
       console.log(searchResults)
     }
   }
-  return (
-    <section className="client-container">
+  return <>{ formClient ? <CreateClient cerrar={setFormClient}/>
+    : <section className="client-container">
       <h1>Clientes</h1>
       <section className="tabla-container">
         <div className="row-1">
           <p></p>
-          <button className="button-29" onClick={() => alert("EN PROGRESO...")}>
-            Agregar cliente
-          </button>
+          <BotonCentrado>
+            <Boton color="blue" onClick={() => setFormClient(!formClient)}>
+              Agregar cliente
+            </Boton>
+          </BotonCentrado>
         </div>
         <div className="row-2">
           <span>{`Clientes ${clients.length} activos`}</span>
@@ -76,7 +79,6 @@ export const Cliente = () => {
               onChange={getSearchClient}
               placeholder="Buscar cliente..."
             />
-            <Icon icon="bx:bx-search" width="28" height="28" />
           </div>
         </div>
         {searchResults.length > 0 ? (
@@ -85,6 +87,6 @@ export const Cliente = () => {
           <h3>No hay resultados</h3>
         )}
       </section>
-    </section>
-  )
+    </section>}
+  </>
 }

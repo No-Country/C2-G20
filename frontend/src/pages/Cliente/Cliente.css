@@ -3,12 +3,12 @@
 }
 .client-container > h1 {
   margin: 1rem auto;
+  color: #5a5c6b;
 }
 .tabla-container {
   margin: auto;
-  width: 90%;
+  width: 95%;
   padding: 1rem;
-  text-align: initial;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -16,15 +16,15 @@
   rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .tabla {
-  border:1px solid #C0C0C0;
-  border-collapse:collapse;
+  border:1px solid #017ADB;
   width: 100%;
+  border-collapse:collapse;
 }
 .tabla th {
-  border:1px solid #C0C0C0;
-  padding:5px;
-  background:#F0F0F0;
+  background:#017ADB;
+  color: #fff;
 }
+.tabla th,
 .tabla td {
   border:1px solid #C0C0C0;
   padding:5px;
@@ -63,49 +63,6 @@
   height: 100%;
 }
 
-/* Button */
-.button-29 {
-  align-items: center;
-  appearance: none;
-  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #017ADB 100%);
-  border: 0;
-  border-radius: 6px;
-  box-shadow: rgba(35, 43, 66, 0.4) 0 2px 4px,
-    #017ADB 0 7px 13px -3px,
-    #06589b 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
-  height: 38px;
-  font-weight: 900;
-  justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow,transform;
-  font-size: 18px;
-}
-.button-29:hover {
-  box-shadow: rgba(35, 37, 66, 0.4) 0 4px 8px, rgba(35, 36, 66, 0.3) 0 7px 13px -3px, #06589b 0 -3px 0 inset;
-  transform: translateY(-2px);
-}
-.button-29:active {
-  box-shadow: #06589b 0 3px 7px inset;
-  transform: translateY(2px);
-}
-
 /* ---------------- @Query ------------------ */
 /*small screens*/
 @media only screen and (max-width: 600px) {
@@ -115,10 +72,53 @@
     width: 100%;
   }
 }
+@media only screen and (max-width: 800px) {
+  .tabla thead {
+    display: none;
+  }
+  .tabla {
+    border:1px solid #fff;
+  }
+  .tabla,
+  .tabla tbody,
+  .tabla tr,
+  .tabla td {
+    display: block;
+    width: 100%;
+  }
+  .tabla tr {
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #C0C0C0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, 
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+  .tabla td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border: 0px solid #fff;
+    border-bottom:1px solid #C0C0C0;
+  }
+  .tabla td:last-child {
+    border-bottom: 0 solid;
+  }
+  .tabla td::before {
+    content: attr(data-label);
+    color:#06589b;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    text-align: left;
+  }
+}
 /*large screens*/
 @media only screen and (min-width: 601px) {
   .client-container {
-    padding: 2rem 0;
+    padding: 1rem 0;
     margin-left: 4rem;
   }
 }
