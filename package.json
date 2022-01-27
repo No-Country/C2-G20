@@ -1,7 +1,7 @@
 {
-  "name": "rest-api-c1-g5",
+  "name": "backend-G20",
   "version": "1.0.0",
-  "description": "REST API para tener como base",
+  "description": "BACKEND G20",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./index.js"
@@ -10,9 +10,15 @@
     "REST",
     "API",
     "Backend",
-    "Node"
+    "Node",
+    "Sequelize",
+    "PostgreSQL",
+    "G20",
+    "G20-Backend",
+    "No-Country",
+    "HSTrejoLuna"
   ],
-  "author": "Hector Sebastian Trejo Luna",
+  "author": "Grupo 20 No Country",
   "license": "GPL-2.0",
   "dependencies": {
     "axios": "^0.24.0",
