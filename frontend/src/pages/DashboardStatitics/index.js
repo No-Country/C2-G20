@@ -1,18 +1,19 @@
 // import "./index.css"
 import Dashboard from "../../components/Dashboard/Dashboard"
 import BartChart from "../../components/Dashboard/BarChart"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import PieChart from "../../components/Dashboard/PieChart"
 import LineChart from "../../components/Dashboard/LineChart"
 import "../DashboardStatitics/dashboardstatitics.css"
 import DoughnutChart from "../../components/Dashboard/DoughnutChart"
+import axios from "axios"
+import useValues from "../../hooks/useValues"
+import fileDownload from "js-file-download"
 export default function DashboardStatitics() {
   const [pieChart, setPieChart] = useState(false)
   const [dashboard, setDashboard] = useState(true)
   const [lineChart, setLineChart] = useState(false)
-  // useEffect(() => {
-  //   <Dashboard />
-  // },[])
+  const { valuesOtherDay, valuesToday } = useValues()
 
   const lineChartEnabled = () => {
     setLineChart(true)
@@ -32,6 +33,30 @@ export default function DashboardStatitics() {
   const pieChartDisabled = () => {
     setPieChart(false)
     setDashboard(true)
+  }
+
+  const payload = useCallback(
+    () => ({
+      payload: [valuesToday, valuesOtherDay],
+    }),
+    [valuesToday, valuesOtherDay]
+  )
+
+  const downloadExcel = () => {
+    const options = {
+      method: "post",
+      url: "http://localhost:5000/download/excel",
+      responseType: "blob",
+      data: payload(),
+    }
+    axios(options)
+      .then((response) => {
+        fileDownload(
+          response.data,
+          `${valuesOtherDay.symbol_crypto}-values.xlsx`
+        )
+      })
+      .catch((err) => console.error(err))
   }
 
   return (
@@ -79,7 +104,7 @@ export default function DashboardStatitics() {
           )}
           <hr />
           <div className="my-3">
-            <button className="btn btn-outline-success">
+            <button className="btn btn-outline-success" onClick={downloadExcel}>
               <i class="fas fa-file-excel"></i>
             </button>
             <p className="form-text lead">Exportar a excel</p>

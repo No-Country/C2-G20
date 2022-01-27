@@ -9,11 +9,29 @@ export default function useValues(symbolCrypto = "btc", date = "2021-01-24") {
     fetch(`http://localhost:5000/cryptos/values/${symbolCrypto}/today`)
       .then((res) => res.json())
       .then((values) => {
-        const { eur, mxn, usd, value_max, value_min } = values
-        setValuesToday({ eur, mxn, usd, value_max, value_min })
+        const {
+          eur,
+          mxn,
+          usd,
+          value_max,
+          value_min,
+          value,
+          date,
+          symbol_crypto,
+        } = values
+        setValuesToday({
+          eur,
+          mxn,
+          usd,
+          value_max,
+          value_min,
+          value,
+          date,
+          symbol_crypto,
+        })
       })
       .catch((err) => console.error(err))
-  }, [])
+  }, [symbolCrypto])
 
   useEffect(() => {
     //Este trae los mismos valores pero del dia que quieras
@@ -22,11 +40,30 @@ export default function useValues(symbolCrypto = "btc", date = "2021-01-24") {
     fetch(`http://localhost:5000/cryptos/values/${symbolCrypto}/${date}`)
       .then((res) => res.json())
       .then((values) => {
-        const { eur, mxn, usd, value_max, value_min } = values
-        setValuesOtherDay({ eur, mxn, usd, value_max, value_min })
+        console.log(values)
+        const {
+          eur,
+          mxn,
+          usd,
+          value_max,
+          value_min,
+          value,
+          date,
+          symbol_crypto,
+        } = values
+        setValuesOtherDay({
+          eur,
+          mxn,
+          usd,
+          value_max,
+          value_min,
+          value,
+          date,
+          symbol_crypto,
+        })
       })
       .catch((err) => console.error(err))
-  }, [])
+  }, [date, symbolCrypto])
 
   return { valuesToday, valuesOtherDay }
 }
