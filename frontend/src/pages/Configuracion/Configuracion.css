@@ -1,0 +1,103 @@
+.configuracion-container {
+  background-color: #f0efef;
+  width: 100%;
+  min-height: 100vh;
+}
+.configuracion-container h1 {
+  padding: 1rem 0;
+  color: #5a5c6b;
+}
+.configuracion-container section {
+  display: flex;
+  justify-content: space-evenly;
+}
+.configuracion-container aside {
+  height: 100%;
+  background-color: #fff;
+}
+.aside-1 {
+  width: auto;
+  height: 100%;
+  display: grid;
+  /* flex-wrap: wrap; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.aside-1::-webkit-scrollbar {
+  width: 0;
+}
+.aside-1 button {
+  width: 160px;
+  height: 50px;
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+.aside-1 button p {
+  margin: 0;
+}
+.aside-2 {
+  width: 55%;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* ---------------- @Query ------------------ */
+/*small screens*/
+@media only screen and (max-width: 600px) {
+  .configuracion-container {
+    margin: 0;
+    margin-bottom: 4.5rem;
+  }
+  .configuracion-container section {
+    flex-direction: column;
+  }
+  .aside-1 {
+    width: 95%;
+    padding: auto;
+    margin: auto;
+    margin-bottom: 1rem;
+    grid-template-columns: repeat(5, 1fr);
+    /* flex-direction: row; */
+    /* overflow-x: scroll; */
+  }
+  .aside-1 button {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin: 1rem auto;
+    padding: 0;
+    font-size: 14px;
+  }
+  .aside-1 button p {
+    display: none;
+  }
+  .aside-1 button svg {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+  }
+  .aside-2 {
+    width: 95%;
+    height: 100%;
+    margin: auto;
+  }
+  .button-30 {
+    font-size: .6rem;
+  }
+}
+/*large screens*/
+@media only screen and (min-width: 601px) {
+  .configuracion-container {
+    margin: 0;
+    padding: 1rem 0;
+    padding-left: 4rem;
+  }
+}
