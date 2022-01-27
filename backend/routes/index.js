@@ -14,9 +14,7 @@ module.exports = function () {
   router.post("/clients", clientController.newClient);
 
   // Obtiene todos los clientes
-  router.get("/clients", 
-  auth,
-  clientController.showClients);
+  router.get("/clients", auth, clientController.showClients);
 
   // Muestra un cliente en especifico (EMAIL)
   router.get("/clients/:email", clientController.showClient);
@@ -33,9 +31,6 @@ module.exports = function () {
   /////////////////////////////////
   // Operaciones para cryptos (Cryptos)
   /////////////////////////////////
-
-  // Agrega nuevos cryptos via POST
-  // router.post("/cryptos", cryptoController.newCrypto);
 
   //Ruta para crear nueva Crypto
   router.post("/cryptos", cryptoController.newCrypto);

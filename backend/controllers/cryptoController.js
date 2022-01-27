@@ -2,126 +2,6 @@ const Cryptos = require("../models/Cryptos");
 const db = require("../config/db");
 
 const axios = require("axios");
-// exports.getCrypto = async (req, res, next) => {
-//   const cryptos = {
-//     BTC: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=btc&tsyms=usd",
-//     ETH: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=eth&tsyms=usd",
-//     DOGE: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=doge&tsyms=usd",
-//   };
-
-//   const btc = await axios.get(cryptos.BTC);
-//   const eth = await axios.get(cryptos.ETH);
-//   const doge = await axios.get(cryptos.DOGE);
-
-//   try {
-//     // call stored procedure
-//     console.log("LLAMANDO A BTC" + btc.data.RAW.BTC.USD.TOSYMBOL);
-//     db.query(
-//       "CALL getcrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
-//       {
-//         replacements: {
-//           name: btc.data.RAW.BTC.USD.FROMSYMBOL,
-//           currency: btc.data.RAW.BTC.USD.TOSYMBOL,
-//           price: btc.data.RAW.BTC.USD.PRICE,
-//           highday: btc.data.RAW.BTC.USD.HIGHDAY,
-//           lowday: btc.data.RAW.BTC.USD.LOWDAY,
-//           changepct24h: btc.data.RAW.BTC.USD.CHANGEPCT24HOUR,
-//           lastupdate: btc.data.DISPLAY.BTC.USD.LASTUPDATE,
-//         },
-//       }
-//     );
-//     db.query(
-//       "CALL getcrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
-//       {
-//         replacements: {
-//           name: eth.data.RAW.ETH.USD.FROMSYMBOL,
-//           currency: eth.data.RAW.ETH.USD.TOSYMBOL,
-//           price: eth.data.RAW.ETH.USD.PRICE,
-//           highday: eth.data.RAW.ETH.USD.HIGHDAY,
-//           lowday: eth.data.RAW.ETH.USD.LOWDAY,
-//           changepct24h: eth.data.RAW.ETH.USD.CHANGEPCT24HOUR,
-//           lastupdate: eth.data.DISPLAY.ETH.USD.LASTUPDATE,
-//         },
-//       }
-//     );
-//     db.query(
-//       "CALL getcrypto(:name, :currency, :price, :highday, :lowday, :changepct24h, :lastupdate);",
-//       {
-//         replacements: {
-//           name: doge.data.RAW.DOGE.USD.FROMSYMBOL,
-//           currency: doge.data.RAW.DOGE.USD.TOSYMBOL,
-//           price: doge.data.RAW.DOGE.USD.PRICE,
-//           highday: doge.data.RAW.DOGE.USD.HIGHDAY,
-//           lowday: doge.data.RAW.DOGE.USD.LOWDAY,
-//           changepct24h: doge.data.RAW.DOGE.USD.CHANGEPCT24HOUR,
-//           lastupdate: doge.data.DISPLAY.DOGE.USD.LASTUPDATE,
-//         },
-//       }
-//     );
-//     res.json({ message: "Crypto data updated successfully :b" });
-//   } catch (error) {
-//     console.log(error);
-//     next();
-//   }
-// };
-
-// exports.newCrypto = async (req, res, next) => {
-//   try {
-//     await crypto.save();
-//     res.json({ message: "Crypto added successfully :b" });
-//   } catch (error) {
-//     console.log(error);
-//     next();
-//   }
-// };
-
-// exports.showCryptos = async (req, res, next) => {
-//   try {
-//     const cryptos = await Cryptos.find({});
-//     res.json(cryptos);
-//   } catch (error) {
-//     console.log(error);
-//     next();
-//   }
-// };
-
-// exports.showCrypto = async (req, res, next) => {
-//   const crypto = await Cryptos.findById(req.params.idCrypto);
-
-//   if (!crypto) {
-//     res.json({ message: "Crypto doesn't exists" });
-//     next();
-//   }
-
-//   res.json(crypto);
-//   return;
-// };
-
-// exports.updateCrypto = async (req, res, next) => {
-//   try {
-//     const crypto = await Cryptos.findOneAndUpdate(
-//       { _id: req.params.idCrypto },
-//       req.body,
-//       {
-//         new: true,
-//       }
-//     );
-//     res.json(crypto);
-//   } catch (error) {
-//     console.log(error);
-//     next();
-//   }
-// };
-
-// exports.deleteCrypto = async (req, res, next) => {
-//   try {
-//     await Cryptos.findOneAndDelete({ _id: req.params.idCrypto });
-//     res.json({ message: "Crypto has successfully deleted" });
-//   } catch (error) {
-//     console.log(error);
-//     next();
-//   }
-// };
 
 //Busca la info de una crypto
 exports.getCrypto = async (req, res, next) => {
@@ -208,27 +88,10 @@ async function insertNewValue({
   eur,
 }) {
   try {
-    const newValue = await db.query(
-      `
-        INSERT INTO values (value, value_max, value_min, mxn, eur, usd, date)
-        VALUES ( ${usd}, ${priceMax}, ${priceMin}, ${mxn}, ${eur}, ${usd}, '${day}')
-        RETURNING id_value;
-        `
-    );
-    const newCryptoValue = await db.query(
-      `
-        INSERT INTO crypto_values (symbol_crypto, id_value)
-        VALUES ('${symbol}', ${newValue[0][0].id_value})
-        `
-    );
-    let value = await db.query(
-      `
-        SELECT * FROM values
-        INNER JOIN crypto_values cv
-        ON cv.id_value = values.id_value
-        WHERE values.date = '${day}' AND cv.symbol_crypto = '${symbol}'
-        `
-    );
+    let value = await db.query(`
+      SELECT * FROM uspAddValue
+      ('${symbol}', ${usd}, ${priceMin}, ${priceMax},${usd},${mxn},${eur},'${day}')
+      `);
     return value;
   } catch (e) {
     console.log(e.name);
@@ -289,6 +152,19 @@ function verifyDate(date) {
   return true;
 }
 
+async function getTimestampsForApi(date) {
+  const timestamps = await dateToTimestamps({}, date);
+  const { year, month, day, dateString } = timestampsToDate(timestamps);
+  const timestampsTomorrow = dateToTimestamps({
+    year,
+    month: parseInt(month) - 1,
+    day: parseInt(day) + 1,
+  });
+  const timestampsTomorrowForApi = `${timestampsTomorrow}`.slice(0, -3);
+  const timestampsForApi = `${timestamps}`.slice(0, -3);
+  return { timestampsTomorrowForApi, timestampsForApi, dateString };
+}
+
 //Consigue los valores de cualquier dia
 exports.getCryptoValueDay = async (req, res, next) => {
   const { symbol, date } = req.params;
@@ -307,26 +183,15 @@ exports.getCryptoValueDay = async (req, res, next) => {
   if (!value[0].length) {
     const api_key =
       "d5d9be9bb78a96b8ea233122bac0cf8b2659f6464a8b0cecd7e23cbd855d3593";
-    const timestamps = await dateToTimestamps({}, date);
-    const { year, month, day, dateString } = timestampsToDate(timestamps);
-    const timestampsTomorrow = dateToTimestamps({
-      year,
-      month: parseInt(month) - 1,
-      day: parseInt(day) + 1,
-    });
-    const timestampsTomorrowForApi = `${timestampsTomorrow}`.slice(0, -3);
-    const timestampsForApi = `${timestamps}`.slice(0, -3);
-    let options = {
-      url: `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=1&toTs=${timestampsTomorrowForApi}&api_key=${api_key}`,
-      method: "get",
-    };
-    const valuesDay = await axios(options);
-    options = {
-      url: `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${symbol}&tsyms=USD,EUR,MXN&ts=${timestampsForApi}&api_key=${api_key}`,
-      method: "get",
-    };
-    const { data: valuesAll } = await axios(options);
-    const { low, high } = valuesDay.data.Data.Data[1];
+    const { timestampsTomorrowForApi, timestampsForApi, dateString } =
+      await getTimestampsForApi(date);
+    const { data: valuesDay } = await axios.get(
+      `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=1&toTs=${timestampsTomorrowForApi}&api_key=${api_key}`
+    );
+    const { data: valuesAll } = await axios.get(
+      `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${symbol}&tsyms=USD,EUR,MXN&ts=${timestampsForApi}&api_key=${api_key}`
+    );
+    const { low, high } = valuesDay.Data.Data[1];
     const {
       USD: usd,
       MXN: mxn,
@@ -342,7 +207,6 @@ exports.getCryptoValueDay = async (req, res, next) => {
       mxn,
       eur,
     });
-    return value;
   }
 
   res.send(value[0][0]);
