@@ -1,11 +1,11 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Nav.css";
 
-const NavItem = ({item, link, icon, active, ...rootDOMAttributes}) => {
+const NavItem = ({item, link, icon, para, ...rootDOMAttributes}) => {
   return <li className="nav-item" {...rootDOMAttributes}>
-    <Link to={link} className={`nav-link ${active === item ? 'nav-link-active' : 'nav-link-inactive'}`}>
+    <Link to={link} className={`nav-link ${para === link ? 'nav-link-active' : 'nav-link-inactive'}`}>
       <Icon icon={icon} width="32" height="32" />
       <span className="link-text">{item}</span>
     </Link>
@@ -13,8 +13,8 @@ const NavItem = ({item, link, icon, active, ...rootDOMAttributes}) => {
 }
 
 export default function NavBar () {
-  const [active, setActive] = useState(false)
   const [theme, setTheme] = useState(false)
+  const parametro = useLocation().pathname
 
   return <nav className="navbar">
       <ul className="navbar-nav">
@@ -50,31 +50,27 @@ export default function NavBar () {
           item={'Dashboard'}
           link={'/Dashboard'}
           icon={"fluent:home-16-filled"}
-          active={active}
-          onClick={()=>setActive('Dashboard')}/>
+          para={parametro}/>
         <NavItem 
           item={'Statitics'}
           link={'/Dashboard/Statitics'}
           icon={"whh:statistics"}
-          active={active}
-          onClick={()=>setActive('Statitics')}/>
-        <NavItem 
-          item={'Setting'}
-          link={'/Dashboard/Setting'}
-          icon={'fluent:settings-28-filled'}
-          active={active}
-          onClick={()=>setActive('Setting')}/>
+          para={parametro}/>
         <NavItem 
           item={'Cliente'}
           link={'/Dashboard/Cliente'}
           icon={"ph:users-bold"}
-          active={active}
-          onClick={()=>setActive('Cliente')}/>
+          para={parametro}/>
+        <NavItem 
+          item={'Setting'}
+          link={'/Dashboard/Setting'}
+          icon={'fluent:settings-28-filled'}
+          para={parametro}/>
         <NavItem 
           item={'Soon...'}
           link={'#'}
           icon={`${ theme ? 'ic:round-wb-sunny' : "eva:moon-fill"}`}
-          active={active}
+          para={parametro}
           onClick={()=>setTheme(!theme)}/>
       </ul>
     </nav>

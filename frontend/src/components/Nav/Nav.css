@@ -24,6 +24,7 @@ body::-webkit-scrollbar-thumb {
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: hidden;
+  z-index: 100;
 }
 .navbar-nav {
   list-style: none;
