@@ -1,22 +1,30 @@
-import { Icon } from "@iconify/react";
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import "./Nav.css";
+import { Icon } from "@iconify/react"
+import { useState, useContext } from "react"
+import { Link, useLocation } from "react-router-dom"
+import "./Nav.css"
+import { PrefContext } from "../../context/PrefContext"
 
-const NavItem = ({item, link, icon, para, ...rootDOMAttributes}) => {
-  return <li className="nav-item" {...rootDOMAttributes}>
-    <Link to={link} className={`nav-link ${para === link ? 'nav-link-active' : 'nav-link-inactive'}`}>
-      <Icon icon={icon} width="32" height="32" />
-      <span className="link-text">{item}</span>
-    </Link>
-  </li>
+const NavItem = ({ item, link, icon, para, ...rootDOMAttributes }) => {
+  return (
+    <li className="nav-item" {...rootDOMAttributes}>
+      <Link
+        to={link}
+        className={`nav-link ${
+          para === link ? "nav-link-active" : "nav-link-inactive"
+        }`}
+      >
+        <Icon icon={icon} width="32" height="32" />
+        <span className="link-text">{item}</span>
+      </Link>
+    </li>
+  )
 }
 
-export default function NavBar () {
-  const [theme, setTheme] = useState(false)
+export default function NavBar() {
+  const { theme, setTheme } = useContext(PrefContext)
   const parametro = useLocation().pathname
-
-  return <nav className="navbar">
+  return (
+    <nav className={`navbar nav ${theme ? "dark" : ""}`}>
       <ul className="navbar-nav">
         <li className="logo">
           <Link to="/" className="nav-link">
@@ -46,32 +54,38 @@ export default function NavBar () {
             </svg>
           </Link>
         </li>
-        <NavItem 
-          item={'Dashboard'}
-          link={'/Dashboard'}
+        <NavItem
+          item={"Dashboard"}
+          link={"/Dashboard"}
           icon={"fluent:home-16-filled"}
-          para={parametro}/>
-        <NavItem 
-          item={'Statitics'}
-          link={'/Dashboard/Statitics'}
-          icon={"whh:statistics"}
-          para={parametro}/>
-        <NavItem 
-          item={'Cliente'}
-          link={'/Dashboard/Cliente'}
-          icon={"ph:users-bold"}
-          para={parametro}/>
-        <NavItem 
-          item={'Setting'}
-          link={'/Dashboard/Setting'}
-          icon={'fluent:settings-28-filled'}
-          para={parametro}/>
-        <NavItem 
-          item={'Soon...'}
-          link={'#'}
-          icon={`${ theme ? 'ic:round-wb-sunny' : "eva:moon-fill"}`}
           para={parametro}
-          onClick={()=>setTheme(!theme)}/>
+        />
+        <NavItem
+          item={"Statitics"}
+          link={"/Dashboard/Statitics"}
+          icon={"whh:statistics"}
+          para={parametro}
+        />
+        <NavItem
+          item={"Cliente"}
+          link={"/Dashboard/Cliente"}
+          icon={"ph:users-bold"}
+          para={parametro}
+        />
+        <NavItem
+          item={"Setting"}
+          link={"/Dashboard/Setting"}
+          icon={"fluent:settings-28-filled"}
+          para={parametro}
+        />
+        <NavItem
+          item={"Soon..."}
+          link={"#"}
+          icon={`${theme ? "ic:round-wb-sunny" : "eva:moon-fill"}`}
+          para={parametro}
+          onClick={() => setTheme(!theme)}
+        />
       </ul>
     </nav>
+  )
 }

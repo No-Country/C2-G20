@@ -101,6 +101,11 @@ body::-webkit-scrollbar-thumb {
   transition: var(--transition-speed);
 }
 
+.dark{
+  background-color: #1e1e24;
+  color: #06589b;
+}
+
 /* --------------- HOVER ---------------- */
 
 .navbar:hover .logo svg {

@@ -14,6 +14,7 @@ import { Cliente } from "./pages/Cliente/Cliente"
 import NavBar from "./components/Nav"
 
 import { CryptoContext, CryptoProvider } from "./context/CryptoContext"
+import PrefContextProvider from "./context/PrefContext"
 
 function App() {
   const { auth, setAuth } = useContext(CryptoContext)
@@ -21,23 +22,25 @@ function App() {
   return (
     <div className="App">
       <>
-        <CryptoProvider value={[auth, setAuth]}>
-          {!pathname.includes("/Dashboard") &&
-          !pathname.includes("/dashboard") ? (
-            <Home />
-          ) : (
-            <NavBar />
-          )}
-          <Routes>
-            <Route path="/Dashboard" element={<ControlPanel />} />
-            <Route
-              path="/Dashboard/Statitics"
-              element={<DashboardStatitics />}
-            />
-            <Route path="/Dashboard/Setting" element={<Configuracion />} />
-            <Route path="/Dashboard/Cliente" element={<Cliente />} />
-          </Routes>
-        </CryptoProvider>
+        <PrefContextProvider>
+          <CryptoProvider value={[auth, setAuth]}>
+            {!pathname.includes("/Dashboard") &&
+            !pathname.includes("/dashboard") ? (
+              <Home />
+            ) : (
+              <NavBar />
+            )}
+            <Routes>
+              <Route path="/Dashboard" element={<ControlPanel />} />
+              <Route
+                path="/Dashboard/Statitics"
+                element={<DashboardStatitics />}
+              />
+              <Route path="/Dashboard/Setting" element={<Configuracion />} />
+              <Route path="/Dashboard/Cliente" element={<Cliente />} />
+            </Routes>
+          </CryptoProvider>
+        </PrefContextProvider>
       </>
     </div>
   )
