@@ -12,33 +12,21 @@ export default function DashboardStatitics() {
   const [dashboard, setDashboard] = useState(true)
   const [lineChart, setLineChart] = useState(false)
   const { valuesOtherDay, valuesToday } = useValues("btc")
-
+  
   const showBar = () => {
     setDashboard(true)
     setLineChart(false)
     setPieChart(false)
   }
   const showLine = () => {
-    if(lineChart) {
-      setLineChart(false)
-      setDashboard(true)
-      setPieChart(false)
-    } else {
-      setLineChart(true)
-      setDashboard(false)
-      setPieChart(false)
-    }
+    setLineChart(true)
+    setDashboard(false)
+    setPieChart(false)
   }
   const showPie = () => {
-    if(pieChart) {
-      setPieChart(false)
-      setDashboard(true)
-      setLineChart(false)
-    } else {
-      setPieChart(true)
-      setDashboard(false)
-      setLineChart(false)
-    }
+    setPieChart(true)
+    setDashboard(false)
+    setLineChart(false)
   }
 
   const payload = useCallback(
