@@ -64,7 +64,7 @@ export default function DashboardStatitics() {
       className="dashboard border shadow-lg my-4"
       style={{ "padding-left": "1em" }}
     >
-      <h4 className="lead display-6">BTC Ultimo mes</h4>
+      <h4 className="lead display-6">BTC Hoy - 2022-01-24</h4>
       <hr className="text-primary mb-4" />
       <div className="row">
         <div className="col-md-9 col-sm-12">
@@ -121,13 +121,16 @@ export default function DashboardStatitics() {
 
         <div className="col-md-3">
           <p className="lead mx-4">
-            ARS: <i class="fas fa-dollar-sign text-primary"></i> 4,414,892
+            USD: <i class="fas fa-dollar-sign text-primary"></i>{" "}
+            {valuesToday ? valuesToday.usd : 0}
           </p>
           <p className="lead mx-4">
-            MXN: <i class="fas fa-dollar-sign text-primary"></i> 864,902
+            MXN: <i class="fas fa-dollar-sign text-primary"></i>{" "}
+            {valuesToday ? valuesToday.mxn : 0}
           </p>
           <p className="lead mx-4">
-            EUR: <i class="fas fa-euro-sign text-primary"></i> 37,253
+            EUR: <i class="fas fa-euro-sign text-primary"></i>{" "}
+            {valuesToday ? valuesToday.eur : 0}
           </p>
         </div>
       </div>

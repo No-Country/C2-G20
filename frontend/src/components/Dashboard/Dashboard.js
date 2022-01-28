@@ -104,16 +104,16 @@ export default function Dashboard() {
       },
     ],
   }))
-  const [datos, setDatos] = useState(() => [
-    { x: "usd", net: 100, cogs: 50, gm: 50 },
-    { x: "mxn", net: 300, cogs: 55, gm: 75 },
-  ])
+
   const [dataBar2, setDataBar2] = useState(() => ({
     labels: ["value", "eur"],
     datasets: [
       {
         label: "Net sales",
-        data: datos,
+        data: [
+          { x: "usd", net: 100, cogs: 50, gm: 50 },
+          { x: "mxn", net: 300, cogs: 55, gm: 75 },
+        ],
         parsing: {
           yAxisKey: "net",
         },
@@ -121,7 +121,10 @@ export default function Dashboard() {
       },
       {
         label: "Cost of goods sold",
-        data: datos,
+        data: [
+          { x: "usd", net: 100, cogs: 50, gm: 50 },
+          { x: "mxn", net: 300, cogs: 55, gm: 75 },
+        ],
         parsing: {
           yAxisKey: "cogs",
         },
@@ -226,35 +229,58 @@ export default function Dashboard() {
       ],
     })
 
-    setDatos([
-      {
-        x: "usd",
-        net: valuesToday.value_max,
-        cogs: valuesToday.value_min,
-        gm: 50,
-      },
-      {
-        x: "mxn",
-        net: valuesToday.value_max,
-        cogs: valuesToday.value_min,
-        gm: 75,
-      },
-    ])
-
     setDataBar2({
-      labels: ["value", "eur"],
+      labels: ["Divisas"],
       datasets: [
         {
-          label: "Net sales",
-          data: datos,
+          label: "Valores Hoy ",
+          data: [
+            {
+              x: "usd",
+              net: valuesToday.usd,
+              cogs: valuesToday.usd,
+              gm: 50,
+            },
+            {
+              x: "mxn",
+              net: valuesToday.mxn,
+              cogs: valuesToday.mxn,
+              gm: 75,
+            },
+            {
+              x: "eur",
+              net: valuesToday.eur,
+              cogs: valuesToday.eur,
+              gm: 75,
+            },
+          ],
           parsing: {
             yAxisKey: "net",
           },
           backgroundColor: ["rgb(255, 99, 132)"],
         },
         {
-          label: "Cost of goods sold",
-          data: datos,
+          label: `Valores ${valuesOtherDay.date}`,
+          data: [
+            {
+              x: "usd",
+              net: valuesOtherDay.usd,
+              cogs: valuesOtherDay.usd,
+              gm: 50,
+            },
+            {
+              x: "mxn",
+              net: valuesOtherDay.mxn,
+              cogs: valuesOtherDay.mxn,
+              gm: 75,
+            },
+            {
+              x: "eur",
+              net: valuesOtherDay.eur,
+              cogs: valuesOtherDay.eur,
+              gm: 75,
+            },
+          ],
           parsing: {
             yAxisKey: "cogs",
           },
