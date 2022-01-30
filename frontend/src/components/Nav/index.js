@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react"
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { Link, useLocation } from "react-router-dom"
 import "./Nav.css"
 import { PrefContext } from "../../context/PrefContext"
@@ -23,8 +23,9 @@ const NavItem = ({ item, link, icon, para, ...rootDOMAttributes }) => {
 export default function NavBar() {
   const { theme, setTheme } = useContext(PrefContext)
   const parametro = useLocation().pathname
+
   return (
-    <nav className={`navbar nav ${theme ? "dark" : ""}`}>
+    <nav className={`navbar ${theme ? "dark" : ""}`}>
       <ul className="navbar-nav">
         <li className="logo">
           <Link to="/" className="nav-link">
@@ -79,7 +80,7 @@ export default function NavBar() {
           para={parametro}
         />
         <NavItem
-          item={"Soon..."}
+          item={`${theme ? "Light Mode" : "Dark Mode"}`}
           link={"#"}
           icon={`${theme ? "ic:round-wb-sunny" : "eva:moon-fill"}`}
           para={parametro}
